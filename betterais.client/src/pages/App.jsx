@@ -1,93 +1,91 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
-import MainWindow from "./MainWindow";
+import MainWindow from "./Windows/MainWindow";
 import LoginPage from "./LoginPage";
+import Register from "./Register";
 import DashboardPage from "./DashboardPage";
-import TimetablePage from "./TimetablePage";
-import {
-  FiHome,
-  FiUser,
-  FiCalendar,
-  FiLogIn,
-  FiCheckCircle,
-} from "react-icons/fi";
+
+import AdministratorWindow from './Windows/AdministratorWindow';
+import StudentWindow from './Windows/StudentWindow';
+import TeacherWindow from './Windows/TeacherWindow';
+
+// Grade Pages
+import AddGrade from './gradePages/AddGrade';
+import ShowGrades from './gradePages/ShowGrades';
+import CalculateGrades from './gradePages/CalculateGrades';
+import ChangeGrade from './gradePages/ChangeGrade';
+import DeleteGrade from './gradePages/DeleteGrade';
+
+// lecture pages
+import AddLecture from './lecturePages/AddLecture';
+import AssignLectureToTimetable from './lecturePages/AssignLectureToTimetable';
+import DeleteLecture from './lecturePages/DeleteLecture';
+import DisplayFilteredTimetables from './lecturePages/DisplayFilteredTimetables';
+import ModifyLecture from './lecturePages/ModifyLecture';
+import TimetablePage from "./lecturePages/TimetablePage";
+
+// student pages
+import AddStudent from './studentPages/AddStudent';
+import DeleteStudent from './studentPages/DeleteStudent';
+import DisplayAllStudents from './studentPages/DisplayAllStudents';
+import DisplayStudentData from './studentPages/DisplayStudentData';
+import PrintToPdf from './studentPages/PrintToPdf';
+import StudentProfile from "./studentPages/StudentProfile";
+
+// teacher pages
+import AddTeacher from './teacherPages/AddTeacher';
+import AssignTeacher from './teacherPages/AssignTeacher';
+import ChangeTeacherInfo from './teacherPages/ChangeTeacherInfo';
+import DeleteTeacher from './teacherPages/DeleteTeacher';
+import ShowAllTeachers from './teacherPages/ShowAllTeachers';
+import TeacherProfile from './teacherPages/TeacherProfile';
+
+
+import Navbar from '../components/Navbar';
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    // Load initial dark mode state from local storage
-    const darkModePreference = localStorage.getItem("darkMode") === "true";
-    setIsDarkMode(darkModePreference);
-    if (darkModePreference) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    localStorage.setItem("darkMode", !isDarkMode);
-    document.documentElement.classList.toggle("dark");
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col dark:bg-gray-900  transition-colors duration-300">
-      {/* Navbar */}
-      <header
-  className={`shadow-md p-4 sticky top-0 z-50 flex justify-between items-center transition-colors duration-300 ${
-    isDarkMode ? "bg-gray-800" : "bg-white"
-  }`}
->
-        <h1 className="text-2xl font-semibold text-gray-700 dark:text-white">
-          Academic Info System
-        </h1>
-        <nav className="flex space-x-6 ">
-          <Link
-            to="/"
-            className="flex items-center text-gray-600 hover:text-blue-500 dark:text-white"
-          >
-            <FiHome className="mr-1" /> Home
-          </Link>
-          <Link
-            to="/dashboard"
-            className="flex items-center text-gray-600 hover:text-blue-500 dark:text-white"
-          >
-            <FiUser className="mr-1" /> Dashboard
-          </Link>
-          <Link
-            to="/timetable"
-            className="flex items-center text-gray-600 hover:text-blue-500 dark:text-white"
-          >
-            <FiCalendar className="mr-1" /> Timetable
-          </Link>
-          <Link
-            to="/login"
-            className="flex items-center text-gray-600 hover:text-blue-500 dark:text-white"
-          >
-            <FiLogIn className="mr-1" /> Login
-          </Link>
-          <div className=''>
-          <button
-            onClick={toggleDarkMode}
-            className="top-4 right-4 p-2 bg-gray-200 dark:bg-gray-700 rounded-full text-gray-800 dark:text-gray-100 transition"
-          >
-            {isDarkMode ? "Light Mode" : "Dark Mode"}
-          </button>
-        </div>
-        </nav>
-
-        
-      </header>
-
+      <Navbar />
       {/* Main Content */}
       <main className="flex-grow p-6">
         <Routes>
           <Route path="/" element={<MainWindow />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/timetable" element={<TimetablePage />} />
+
+          <Route path="/administrator" element={<AdministratorWindow />} />
+          <Route path="/student" element={<StudentWindow />} />
+          <Route path="/teacher" element={<TeacherWindow />} />
+
+          <Route path="/addGrade" element={<AddGrade />} />
+          <Route path="/showGrades" element={<ShowGrades />} />
+          <Route path="/calculateGrades" element={<CalculateGrades />} />
+          <Route path="/changeGrade" element={<ChangeGrade />} />
+          <Route path="/deleteGrade" element={<DeleteGrade />} />
+
+          <Route path="/addLecture" element={<AddLecture />} />
+          <Route path="/assignLectureToTimetable" element={<AssignLectureToTimetable />} />
+          <Route path="/deleteLecture" element={<DeleteLecture />} />
+          <Route path="/displayFilteredTimetables" element={<DisplayFilteredTimetables />} />
+          <Route path="/modifyLecture" element={<ModifyLecture />} />
+
+          <Route path="/addStudent" element={<AddStudent />} />
+          <Route path="/deleteStudent" element={<DeleteStudent />} />
+          <Route path="/displayAllStudents" element={<DisplayAllStudents />} />
+          <Route path="/displayStudentData" element={<DisplayStudentData />} />
+          <Route path="/printToPdf" element={<PrintToPdf />} />
+          <Route path="/StudentProfile" element={<StudentProfile />} />
+
+          <Route path="/addTeacher" element={<AddTeacher />} />
+          <Route path="/assignTeacher" element={<AssignTeacher />} />
+          <Route path="/changeTeacherInfo" element={<ChangeTeacherInfo />} />
+          <Route path="/deleteTeacher" element={<DeleteTeacher />} />
+          <Route path="/showAllTeachers" element={<ShowAllTeachers />} />
+          <Route path="/TeacherProfile" element={<TeacherProfile />} />
+
         </Routes>
       </main>
 

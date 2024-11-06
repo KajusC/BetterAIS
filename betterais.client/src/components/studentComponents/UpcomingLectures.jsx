@@ -13,7 +13,7 @@ const UpcomingLectures = () => {
         <li>Mathematics 101 - Room 101 - 10:00 AM</li>
         <li>Physics 201 - Room 202 - 2:00 PM</li>
       </ul>
-      <Link to="/lectures" className="text-blue-500 mt-4 inline-block hover:underline">
+      <Link to="/timetable" className="text-blue-500 mt-4 inline-block hover:underline">
         View All Lectures
       </Link>
     </div>

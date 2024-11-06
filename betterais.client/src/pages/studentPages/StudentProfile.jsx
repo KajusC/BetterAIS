@@ -19,9 +19,9 @@ const StudentProfile = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-gray-50 min-h-screen dark:bg-gray-900 dark:text-white">
       <h1 className="text-3xl font-bold mb-4">Student Profile</h1>
-      <div className="bg-white shadow-md rounded-lg p-6 mb-6">
+      <div className="dark:bg-gray-800 shadow-md rounded-lg p-6 mb-6 ">
         <h2 className="text-2xl font-semibold mb-2">Personal Information</h2>
         <p><strong>Name:</strong> {student.name}</p>
         <p><strong>Birth Date:</strong> {student.birthDate}</p>
@@ -31,7 +31,7 @@ const StudentProfile = () => {
         <p><strong>Financial Aid:</strong> {student.financialAidType}</p>
       </div>
       
-      <div className="bg-white shadow-md rounded-lg p-6 mb-6">
+      <div className="dark:bg-gray-800 shadow-md rounded-lg p-6 mb-6">
         <h2 className="text-2xl font-semibold mb-2">Academic Information</h2>
         <p><strong>Study Program:</strong> {student.studyProgram}</p>
         <h3 className="text-xl font-semibold mt-4">Recent Grades</h3>

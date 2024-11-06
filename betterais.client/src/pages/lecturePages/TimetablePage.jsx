@@ -1,5 +1,5 @@
 import React from 'react';
-import Timetable from '../components/Timetable';
+import Timetable from '../../components/Timetable';
 
 const TimetablePage = () => {
   // Placeholder schedule data

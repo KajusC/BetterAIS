@@ -1,7 +1,7 @@
 import React from 'react';
-import StudentCard from '../components/StudentCard';
-import TeacherCard from '../components/TeacherCard';
-import AdministratorCard from '../components/AdministratorCard';
+import StudentCard from '../components/studentComponents/StudentCard';
+import TeacherCard from '../components/TeacherComponents/TeacherCard';
+import AdministratorCard from '../components/administratorComponents/AdministratorCard';
 
 const DashboardPage = () => {
   // Placeholder data
