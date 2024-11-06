@@ -1,47 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import MainWindow from "./Windows/MainWindow";
 import LoginPage from "./LoginPage";
 import Register from "./Register";
 import DashboardPage from "./DashboardPage";
 
-import AdministratorWindow from './Windows/AdministratorWindow';
-import StudentWindow from './Windows/StudentWindow';
-import TeacherWindow from './Windows/TeacherWindow';
+import AdministratorWindow from "./Windows/AdministratorWindow";
+import StudentWindow from "./Windows/StudentWindow";
+import TeacherWindow from "./Windows/TeacherWindow";
 
 // Grade Pages
-import AddGrade from './gradePages/AddGrade';
-import ShowGrades from './gradePages/ShowGrades';
-import CalculateGrades from './gradePages/CalculateGrades';
-import ChangeGrade from './gradePages/ChangeGrade';
-import DeleteGrade from './gradePages/DeleteGrade';
+import AddGrade from "./gradePages/AddGrade";
+import ShowGrades from "./gradePages/ShowGrades";
+import CalculateGrades from "./gradePages/CalculateGrades";
+import ChangeGrade from "./gradePages/ChangeGrade";
+import DeleteGrade from "./gradePages/DeleteGrade";
 
 // lecture pages
-import AddLecture from './lecturePages/AddLecture';
-import AssignLectureToTimetable from './lecturePages/AssignLectureToTimetable';
-import DeleteLecture from './lecturePages/DeleteLecture';
-import DisplayFilteredTimetables from './lecturePages/DisplayFilteredTimetables';
-import ModifyLecture from './lecturePages/ModifyLecture';
+import AddLecture from "./lecturePages/AddLecture";
+import AssignLectureToTimetable from "./lecturePages/AssignLectureToTimetable";
+import DeleteLecture from "./lecturePages/DeleteLecture";
+import DisplayFilteredTimetables from "./lecturePages/DisplayFilteredTimetables";
+import ModifyLecture from "./lecturePages/ModifyLecture";
 import TimetablePage from "./lecturePages/TimetablePage";
 
 // student pages
-import AddStudent from './studentPages/AddStudent';
-import DeleteStudent from './studentPages/DeleteStudent';
-import DisplayAllStudents from './studentPages/DisplayAllStudents';
-import DisplayStudentData from './studentPages/DisplayStudentData';
-import PrintToPdf from './studentPages/PrintToPdf';
+import AddStudent from "./studentPages/AddStudent";
+import DeleteStudent from "./studentPages/DeleteStudent";
+import DisplayAllStudents from "./studentPages/DisplayAllStudents";
+import DisplayStudentData from "./studentPages/DisplayStudentData";
+import PrintToPdf from "./studentPages/PrintToPdf";
 import StudentProfile from "./studentPages/StudentProfile";
 
 // teacher pages
-import AddTeacher from './teacherPages/AddTeacher';
-import AssignTeacher from './teacherPages/AssignTeacher';
-import ChangeTeacherInfo from './teacherPages/ChangeTeacherInfo';
-import DeleteTeacher from './teacherPages/DeleteTeacher';
-import ShowAllTeachers from './teacherPages/ShowAllTeachers';
-import TeacherProfile from './teacherPages/TeacherProfile';
+import AddTeacher from "./teacherPages/AddTeacher";
+import AssignTeacher from "./teacherPages/AssignTeacher";
+import ChangeTeacherInfo from "./teacherPages/ChangeTeacherInfo";
+import DeleteTeacher from "./teacherPages/DeleteTeacher";
+import ShowAllTeachers from "./teacherPages/ShowAllTeachers";
+import TeacherProfile from "./teacherPages/TeacherProfile";
 
+import ErrorPage from "./ErrorPage";
 
-import Navbar from '../components/Navbar';
+import Navbar from "../components/Navbar";
 
 const App = () => {
   return (
@@ -67,9 +68,15 @@ const App = () => {
           <Route path="/deleteGrade" element={<DeleteGrade />} />
 
           <Route path="/addLecture" element={<AddLecture />} />
-          <Route path="/assignLectureToTimetable" element={<AssignLectureToTimetable />} />
+          <Route
+            path="/assignLectureToTimetable"
+            element={<AssignLectureToTimetable />}
+          />
           <Route path="/deleteLecture" element={<DeleteLecture />} />
-          <Route path="/displayFilteredTimetables" element={<DisplayFilteredTimetables />} />
+          <Route
+            path="/displayFilteredTimetables"
+            element={<DisplayFilteredTimetables />}
+          />
           <Route path="/modifyLecture" element={<ModifyLecture />} />
 
           <Route path="/addStudent" element={<AddStudent />} />
@@ -86,6 +93,7 @@ const App = () => {
           <Route path="/showAllTeachers" element={<ShowAllTeachers />} />
           <Route path="/TeacherProfile" element={<TeacherProfile />} />
 
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
 

@@ -13,7 +13,7 @@ export default function GradeManager() {
         <ul className="text-gray-600 dark:text-white">
         <li>
             <Link
-              to="/addStudentgrade"
+              to="/addGrade"
               className="text-green-500 mt-4 inline-block hover:underline "
             >
               Add a grade to student
