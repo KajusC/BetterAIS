@@ -21,10 +21,10 @@ export default function TeacherManager() {
               </li>
               <li>
                 <Link
-                  to="/editTeacher"
+                  to="/editTeacherInfo"
                   className="text-yellow-500 mt-4 inline-block hover:underline "
                 >
-                  edit teacher info
+                  Edit teacher info
                 </Link>
               </li>
               <li>
@@ -37,7 +37,7 @@ export default function TeacherManager() {
               </li>
               <li>
                 <Link
-                  to="/displayTeacher"
+                  to="/showAllTeachers"
                   className="text-blue-500 mt-4 inline-block hover:underline "
                 >
                   display teacher data
@@ -45,7 +45,7 @@ export default function TeacherManager() {
               </li>
               <li>
                 <Link
-                  to="/displayTeacherFilter"
+                  to="/TeachersByFilter"
                   className="text-blue-500 mt-4 inline-block hover:underline "
                 >
                   display teachers by filter

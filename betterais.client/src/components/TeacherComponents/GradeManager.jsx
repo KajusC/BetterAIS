@@ -21,15 +21,15 @@ export default function GradeManager() {
           </li>
           <li>
             <Link
-              to="/calculateWeightedGrade"
+              to="/calculateGrades"
               className="text-green-500 mt-4 inline-block hover:underline "
             >
-              Calculate weighted grade ????
+              Calculate weighted grade ??
             </Link>
           </li>
           <li>
             <Link
-              to="/deleteGrade"
+              to="/changeGrade"
               className="text-yellow-500 mt-4 inline-block hover:underline "
             >
               Change student grade

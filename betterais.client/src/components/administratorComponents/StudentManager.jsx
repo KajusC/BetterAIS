@@ -29,10 +29,10 @@ export default function StudentManager() {
           </li>
           <li>
             <Link
-              to="/printStudent"
+              to="/displayStudentData"
               className="text-blue-500 mt-4 inline-block hover:underline "
             >
-              Print student data
+              Display student data
             </Link>
           </li>
         </ul>
