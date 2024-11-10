@@ -13,7 +13,7 @@ export default function StudentManager() {
         <ul className="text-gray-600 dark:text-white">
           <li>
             <Link
-              to="/printStudentPDF"
+              to="/printToPdf"
               className="text-blue-500 mt-4 inline-block hover:underline "
             >
               Print student data to PDF
@@ -29,7 +29,7 @@ export default function StudentManager() {
           </li>
           <li>
             <Link
-              to="/getFilteredStudentData"
+              to="/displayAllStudents"
               className="text-blue-500 mt-4 inline-block hover:underline "
             >
               Get all students' data

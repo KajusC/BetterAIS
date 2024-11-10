@@ -14,7 +14,7 @@ const RecentGrades = () => {
         <li>Physics 201: B+</li>
         <li>History 301: A-</li>
       </ul>
-      <Link to="/grades" className="text-purple-500 mt-4 inline-block hover:underline">
+      <Link to="/viewAllGrades" className="text-purple-500 mt-4 inline-block hover:underline">
         View All Grades
       </Link>
     </div>

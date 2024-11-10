@@ -21,7 +21,7 @@ export default function LectureManager() {
               </li>
               <li>
                 <Link
-                  to="/addLectureTimetable"
+                  to="/addLectureToTimetable"
                   className="text-green-500 mt-4 inline-block hover:underline "
                 >
                   Add lecture to timetable

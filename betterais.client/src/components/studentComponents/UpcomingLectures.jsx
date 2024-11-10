@@ -14,7 +14,7 @@ const UpcomingLectures = () => {
         <li>Physics 201 - Room 202 - 2:00 PM</li>
       </ul>
       <Link to="/timetable" className="text-blue-500 mt-4 inline-block hover:underline">
-        View All Lectures
+        Timetable
       </Link>
     </div>
   );
