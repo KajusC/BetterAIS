@@ -16,43 +16,43 @@ public partial class BetterAisContext : DbContext
     {
     }
 
-    public virtual DbSet<Destytojai> Destytojais { get; set; }
+    public virtual DbSet<Destytojai> Destytojai { get; set; }
 
-    public virtual DbSet<Fakultetai> Fakultetais { get; set; }
+    public virtual DbSet<Fakultetai> Fakultetai { get; set; }
 
-    public virtual DbSet<FinansavimoTipai> FinansavimoTipais { get; set; }
+    public virtual DbSet<FinansavimoTipai> FinansavimoTipai { get; set; }
 
-    public virtual DbSet<Kabinetai> Kabinetais { get; set; }
+    public virtual DbSet<Kabinetai> Kabinetai { get; set; }
 
-    public virtual DbSet<Moduliai> Moduliais { get; set; }
+    public virtual DbSet<Moduliai> Moduliai { get; set; }
 
-    public virtual DbSet<MoksliniaiLaipsniai> MoksliniaiLaipsniais { get; set; }
+    public virtual DbSet<MoksliniaiLaipsniai> MoksliniaiLaipsniai { get; set; }
 
     public virtual DbSet<Paskaitos> Paskaitos { get; set; }
 
-    public virtual DbSet<PaskaitosKabinetai> PaskaitosKabinetais { get; set; }
+    public virtual DbSet<PaskaitosKabinetai> PaskaitosKabinetai { get; set; }
 
-    public virtual DbSet<PaskaitosTipai> PaskaitosTipais { get; set; }
+    public virtual DbSet<PaskaitosTipai> PaskaitosTipai { get; set; }
 
-    public virtual DbSet<Pazymiai> Pazymiais { get; set; }
+    public virtual DbSet<Pazymiai> Pazymiai { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
 
-    public virtual DbSet<Statusai> Statusais { get; set; }
+    public virtual DbSet<Statusai> Statusai { get; set; }
 
-    public virtual DbSet<Studentai> Studentais { get; set; }
+    public virtual DbSet<Studentai> Studentai { get; set; }
 
-    public virtual DbSet<StudentoStatusai> StudentoStatusais { get; set; }
+    public virtual DbSet<StudentoStatusai> StudentoStatusai { get; set; }
 
-    public virtual DbSet<StudijuPrograma> StudijuProgramas { get; set; }
+    public virtual DbSet<StudijuPrograma> StudijuPrograma { get; set; }
 
-    public virtual DbSet<Suvestine> Suvestines { get; set; }
+    public virtual DbSet<Suvestine> Suvestine { get; set; }
 
     public virtual DbSet<Uzduotys> Uzduotys { get; set; }
 
-    public virtual DbSet<UzsiemimoTipai> UzsiemimoTipais { get; set; }
+    public virtual DbSet<UzsiemimoTipai> UzsiemimoTipai { get; set; }
 
-    public virtual DbSet<Vartotojai> Vartotojais { get; set; }
+    public virtual DbSet<Vartotojai> Vartotojai { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -470,7 +470,7 @@ public partial class BetterAisContext : DbContext
                 .HasMaxLength(20)
                 .HasColumnName("vardas");
 
-            entity.HasOne(d => d.Role).WithMany(p => p.Vartotojais)
+            entity.HasOne(d => d.Role).WithMany(p => p.Vartotojai)
                 .HasForeignKey(d => d.RoleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("vartotojai_role_id_fkey");

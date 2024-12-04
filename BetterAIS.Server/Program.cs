@@ -1,5 +1,7 @@
 using AutoMapper;
 using BetterAIS.Business;
+using BetterAIS.Business.Interfaces;
+using BetterAIS.Business.Services;
 using BetterAIS.Data.Context;
 using BetterAIS.Data.Interfaces;
 using BetterAIS.Data.Repositories;
@@ -38,6 +40,10 @@ namespace BetterAIS.Server
             builder.Services.AddScoped<ISuvestineRepository, SuvestineRepository>();
             builder.Services.AddScoped<IUzduotysRepository, UzduotysRepository>();
             builder.Services.AddScoped<IUzsiemimoTipaiRepository, UzsiemimoTipaiRepository>();
+
+            // services
+            builder.Services.AddScoped<IFinansavimoTipaiService, FinansavimoTipaiService>();
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
