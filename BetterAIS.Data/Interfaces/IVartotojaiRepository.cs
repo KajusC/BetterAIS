@@ -2,7 +2,7 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IVartotojaiRepository : IRepository<Vartotojai>
+public interface IVartotojaiRepository : IRepository<Vartotojai, string>
 {
 
 }

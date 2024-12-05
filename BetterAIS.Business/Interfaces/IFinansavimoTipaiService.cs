@@ -2,7 +2,7 @@
 
 namespace BetterAIS.Business.Interfaces;
 
-public interface IFinansavimoTipaiService : ICrud<FinansavimoTipaiDTO>
+public interface IFinansavimoTipaiService : ICrud<FinansavimoTipaiDTO, int>
 {
     
 }

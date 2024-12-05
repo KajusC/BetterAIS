@@ -10,7 +10,7 @@ public class ModuliaiRepository : IModuliaiRepository
         throw new NotImplementedException();
     }
 
-    public async Task<Moduliai> GetByIdAsync(int id)
+    public async Task<Moduliai> GetByIdAsync(string id)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class ModuliaiRepository : IModuliaiRepository
         throw new NotImplementedException();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(string id)
     {
         throw new NotImplementedException();
     }

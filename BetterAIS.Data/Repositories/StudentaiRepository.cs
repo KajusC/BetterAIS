@@ -10,7 +10,7 @@ public class StudentaiRepository : IStudentaiRepository
         throw new NotImplementedException();
     }
 
-    public async Task<Studentai> GetByIdAsync(int id)
+    public async Task<Studentai> GetByIdAsync(string id)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class StudentaiRepository : IStudentaiRepository
         throw new NotImplementedException();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(string id)
     {
         throw new NotImplementedException();
     }

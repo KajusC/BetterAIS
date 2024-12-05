@@ -2,6 +2,6 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IStudentaiRepository : IRepository<Studentai>
+public interface IStudentaiRepository : IRepository<Studentai, string>
 {
 }

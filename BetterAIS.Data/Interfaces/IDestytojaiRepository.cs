@@ -7,7 +7,7 @@ using BetterAIS.Data.Models;
 
 namespace BetterAIS.Data.Interfaces
 {
-    public interface IDestytojaiRepository : IRepository<Destytojai>
+    public interface IDestytojaiRepository : IRepository<Destytojai, string>
     {
     }
 }

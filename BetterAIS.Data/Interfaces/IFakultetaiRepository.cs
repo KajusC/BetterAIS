@@ -2,7 +2,7 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IFakultetaiRepository : IRepository<Fakultetai>
+public interface IFakultetaiRepository : IRepository<Fakultetai, int>
 {
 
 }

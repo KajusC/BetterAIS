@@ -9,7 +9,7 @@ public partial class Destytojai
 
     public string Kvalifikacija { get; set; } = null!;
 
-    public virtual ICollection<Moduliai> Moduliais { get; set; } = new List<Moduliai>();
+    public virtual ICollection<Moduliai> Moduliai { get; set; } = new List<Moduliai>();
 
     public virtual ICollection<Paskaitos> Paskaitos { get; set; } = new List<Paskaitos>();
 

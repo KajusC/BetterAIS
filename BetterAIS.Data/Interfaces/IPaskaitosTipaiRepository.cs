@@ -2,6 +2,6 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IPaskaitosTipaiRepository : IRepository<PaskaitosTipai>
+public interface IPaskaitosTipaiRepository : IRepository<PaskaitosTipai, int>
 {
 }

@@ -2,6 +2,6 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IRoleRepository : IRepository<Role>
+public interface IRoleRepository : IRepository<Role, int>
 {
 }

@@ -2,6 +2,6 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IFinansavimoTipaiRepository : IRepository<FinansavimoTipai>
+public interface IFinansavimoTipaiRepository : IRepository<FinansavimoTipai, int>
 {
 }

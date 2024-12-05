@@ -2,6 +2,6 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IModuliaiRepository : IRepository<Moduliai>
+public interface IModuliaiRepository : IRepository<Moduliai, string>
 {
 }

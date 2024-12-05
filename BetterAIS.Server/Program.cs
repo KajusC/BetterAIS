@@ -43,6 +43,7 @@ namespace BetterAIS.Server
 
             // services
             builder.Services.AddScoped<IFinansavimoTipaiService, FinansavimoTipaiService>();
+            builder.Services.AddScoped<IDestytojaiService, DestytojaiService>();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

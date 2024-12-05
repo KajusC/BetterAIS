@@ -2,6 +2,6 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IPazymiaiRepository : IRepository<Pazymiai>
+public interface IPazymiaiRepository : IRepository<Pazymiai, int>
 {
 }

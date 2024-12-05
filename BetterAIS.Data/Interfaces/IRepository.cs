@@ -1,10 +1,10 @@
 ﻿namespace BetterAIS.Data.Interfaces;
 
-public interface IRepository<TModel> where TModel : class
+public interface IRepository<TModel, TId> where TModel : class
 {
     Task<IEnumerable<TModel>> GetAllAsync();
-    Task<TModel> GetByIdAsync(int id);
+    Task<TModel> GetByIdAsync(TId id);
     Task AddAsync(TModel entity);
     Task UpdateAsync(TModel entity);
-    Task DeleteAsync(int id);
+    Task DeleteAsync(TId id);
 }

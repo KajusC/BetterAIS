@@ -2,7 +2,7 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IUzsiemimoTipaiRepository : IRepository<UzsiemimoTipai>
+public interface IUzsiemimoTipaiRepository : IRepository<UzsiemimoTipai, int>
 { 
 
 }

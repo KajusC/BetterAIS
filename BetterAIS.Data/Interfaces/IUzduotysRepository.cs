@@ -2,7 +2,7 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IUzduotysRepository : IRepository<Uzduotys>
+public interface IUzduotysRepository : IRepository<Uzduotys, int>
 {
 
 }

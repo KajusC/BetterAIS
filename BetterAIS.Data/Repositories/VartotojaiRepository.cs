@@ -10,7 +10,7 @@ public class VartotojaiRepository : IVartotojaiRepository
         throw new NotImplementedException();
     }
 
-    public async Task<Vartotojai> GetByIdAsync(int id)
+    public async Task<Vartotojai> GetByIdAsync(string id)
     {
         throw new NotImplementedException();
     }
@@ -25,7 +25,7 @@ public class VartotojaiRepository : IVartotojaiRepository
         throw new NotImplementedException();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(string id)
     {
         throw new NotImplementedException();
     }

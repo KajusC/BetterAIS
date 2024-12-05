@@ -2,6 +2,6 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IStatusaiRepository : IRepository<Statusai>
+public interface IStatusaiRepository : IRepository<Statusai, int>
 {
 }

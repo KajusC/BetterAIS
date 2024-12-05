@@ -2,6 +2,6 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IMoksliniaiLaipsniaiRepository : IRepository<MoksliniaiLaipsniai>
+public interface IMoksliniaiLaipsniaiRepository : IRepository<MoksliniaiLaipsniai, int>
 {
 }

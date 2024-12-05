@@ -2,6 +2,6 @@
 
 namespace BetterAIS.Data.Interfaces;
 
-public interface IKabinetaiRepository : IRepository<Kabinetai>
+public interface IKabinetaiRepository : IRepository<Kabinetai, int>
 {
 }
