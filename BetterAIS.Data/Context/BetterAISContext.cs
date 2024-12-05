@@ -156,7 +156,7 @@ public partial class BetterAisContext : DbContext
                 .HasMaxLength(10)
                 .HasColumnName("uzsiemimu_kiekis");
 
-            entity.HasOne(d => d.FkDestytojasVidkoNavigation).WithMany(p => p.Moduliais)
+            entity.HasOne(d => d.FkDestytojasVidkoNavigation).WithMany(p => p.Moduliai)
                 .HasForeignKey(d => d.FkDestytojasVidko)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("atsakingas");
