@@ -13,7 +13,7 @@ public partial class Studentai
 
     public int Finansavimas { get; set; }
 
-    public int FkProgramosKodas { get; set; }
+    public string FkProgramosKodas { get; set; }
 
     public virtual FinansavimoTipai FinansavimasNavigation { get; set; } = null!;
 

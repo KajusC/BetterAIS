@@ -47,4 +47,10 @@ public class DestytojaiRepository : IDestytojaiRepository
         _context.Destytojai.Remove(entity);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<string> GetLatestVidkoAsync()
+    {
+        var entity = await _context.Destytojai.OrderByDescending(x => x.Vidko).FirstOrDefaultAsync();
+        return entity?.Vidko;
+    }
 }
