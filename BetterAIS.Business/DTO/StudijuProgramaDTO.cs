@@ -2,7 +2,7 @@ namespace BetterAIS.Business.DTO;
 
 public class StudijuProgramaDTO
 {
-    public int ProgramosKodas { get; set; }
+    public string ProgramosKodas { get; set; }
     public string Pavadinimas { get; set; }
     public string Trukme { get; set; }
     public int KredituKiekis { get; set; }

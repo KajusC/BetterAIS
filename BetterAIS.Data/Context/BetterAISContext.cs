@@ -7,10 +7,6 @@ namespace BetterAIS.Data.Context;
 
 public partial class BetterAisContext : DbContext
 {
-    public BetterAisContext()
-    {
-    }
-
     public BetterAisContext(DbContextOptions<BetterAisContext> options)
         : base(options)
     {
@@ -53,10 +49,6 @@ public partial class BetterAisContext : DbContext
     public virtual DbSet<UzsiemimoTipai> UzsiemimoTipai { get; set; }
 
     public virtual DbSet<Vartotojai> Vartotojai { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Database=BetterAIS;Username=postgres;Password=postgres");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -349,6 +341,7 @@ public partial class BetterAisContext : DbContext
             entity.ToTable("studiju_programa");
 
             entity.Property(e => e.ProgramosKodas)
+                .HasMaxLength(20)
                 .ValueGeneratedNever()
                 .HasColumnName("programos_kodas");
             entity.Property(e => e.FakultetoId).HasColumnName("fakulteto_id");
@@ -364,7 +357,8 @@ public partial class BetterAisContext : DbContext
                 .HasMaxLength(10)
                 .HasColumnName("trukme");
 
-            entity.HasOne(d => d.MokslinisLaipsnisNavigation).WithMany(p => p.StudijuProgramas)
+            entity.HasOne(d => d.MokslinisLaipsnisNavigation)
+                .WithMany(p => p.StudijuProgramas)
                 .HasForeignKey(d => d.MokslinisLaipsnis)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("studiju_programa_mokslinis_laipsnis_fkey");

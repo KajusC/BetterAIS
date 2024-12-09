@@ -9,5 +9,6 @@ namespace BetterAIS.Data.Interfaces
 {
     public interface IDestytojaiRepository : IRepository<Destytojai, string>
     {
+        Task<string> GetLatestVidkoAsync();
     }
 }
