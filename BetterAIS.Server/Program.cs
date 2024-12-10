@@ -72,6 +72,8 @@ namespace BetterAIS.Server
             builder.Services.AddScoped<ISuvestineRepository, SuvestineRepository>();
             builder.Services.AddScoped<IUzduotysRepository, UzduotysRepository>();
             builder.Services.AddScoped<IUzsiemimoTipaiRepository, UzsiemimoTipaiRepository>();
+            builder.Services.AddScoped<IPazymiaiRepository, PazymiaiRepository>();
+
 
             // services
             builder.Services.AddScoped<IFinansavimoTipaiService, FinansavimoTipaiService>();
@@ -80,6 +82,8 @@ namespace BetterAIS.Server
             builder.Services.AddScoped<IStudijuProgramaService, StudijuProgramaService>();
             builder.Services.AddScoped<IStudentaiService, StudentaiService>();
             builder.Services.AddScoped<IVartotojaiService, VartotojaiService>();
+            builder.Services.AddScoped<IPazymiaiService, PazymiaiService>();
+
 
             // Register AutoMapper
             var mapperConfig = AutoMapperConfig.Initialize();
