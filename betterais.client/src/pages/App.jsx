@@ -86,12 +86,12 @@ const App = () => {
           <Route path="/printToPdf" element={<PrintToPdf />} />
           <Route path="/StudentProfile" element={<StudentProfile />} />
 
-          <Route path="/addTeacher" element={<AddTeacher />} />
+          <Route path="/add-teacher" element={<AddTeacher />} />
           <Route path="/assignTeacher" element={<AssignTeacher />} />
-          <Route path="/changeTeacherInfo" element={<ChangeTeacherInfo />} />
-          <Route path="/deleteTeacher" element={<DeleteTeacher />} />
+          <Route path="/edit-teacher/:vidko" element={<ChangeTeacherInfo />} />
+          <Route path="/delete-teacher" element={<DeleteTeacher />} />
           <Route path="/showAllTeachers" element={<ShowAllTeachers />} />
-          <Route path="/TeacherProfile" element={<TeacherProfile />} />
+          <Route path="/teacher-profile/:vidko" element={<TeacherProfile />} />
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>
