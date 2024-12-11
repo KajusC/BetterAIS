@@ -9,11 +9,14 @@ namespace BetterAIS.Business.Services
     public class DestytojaiService : IDestytojaiService
     {
         private readonly IDestytojaiRepository _repository;
+        private readonly IVartotojaiRepository _repositoryUsers;
         private readonly IMapper _mapper;
+        private readonly IVartotojaiService _vartotojaiService;
 
-        public DestytojaiService(IDestytojaiRepository repository, IMapper mapper)
+        public DestytojaiService(IDestytojaiRepository repository, IVartotojaiService vartotojaiService, IMapper mapper)
         {
             _repository = repository;
+            _vartotojaiService = vartotojaiService;
             _mapper = mapper;
         }
 
@@ -29,21 +32,52 @@ namespace BetterAIS.Business.Services
             return _mapper.Map<DestytojaiDTO>(entity);
         }
 
-        public async Task AddAsync(DestytojaiDTO model)
+        public async Task AddAsync(DestytojaiDTO destytojaiModel)
         {
-            var entity = _mapper.Map<Destytojai>(model);
-            await _repository.AddAsync(entity);
+            var vartotojaiModel = new VartotojaiDTO
+            {
+                Vidko = destytojaiModel.Vidko,
+                Slaptazodis = destytojaiModel.Slaptazodis,
+                Vardas = destytojaiModel.Vardas,
+                GimimoData = destytojaiModel.GimimoData,
+                Pavarde = destytojaiModel.Pavarde,
+                ElPastas = destytojaiModel.ElPastas,
+                TelefonoNr = destytojaiModel.TelefonoNr,
+                RoleId = destytojaiModel.RoleId
+            };
+
+            await _vartotojaiService.AddDestytojaiVartotojas(vartotojaiModel, destytojaiModel);
         }
 
-        public async Task UpdateAsync(DestytojaiDTO model)
+        public async Task UpdateAsync(DestytojaiDTO destytojaiModel)
         {
-            var entity = _mapper.Map<Destytojai>(model);
+
+            var entity = _mapper.Map<Destytojai>(destytojaiModel);
+
+            if (entity == null)
+            {
+                throw new KeyNotFoundException();
+            }
+            var vartotojaiModel = new VartotojaiDTO
+            {
+                Vidko = destytojaiModel.Vidko,
+                Slaptazodis = destytojaiModel.Slaptazodis,
+                Vardas = destytojaiModel.Vardas,
+                GimimoData = destytojaiModel.GimimoData,
+                Pavarde = destytojaiModel.Pavarde,
+                ElPastas = destytojaiModel.ElPastas,
+                TelefonoNr = destytojaiModel.TelefonoNr,
+                RoleId = destytojaiModel.RoleId
+            };
+
+            await _vartotojaiService.UpdateAsync(vartotojaiModel);
             await _repository.UpdateAsync(entity);
         }
 
         public async Task DeleteAsync(string vidko)
         {
             await _repository.DeleteAsync(vidko);
+            await _vartotojaiService.DeleteAsync(vidko);
         }
     }
 }

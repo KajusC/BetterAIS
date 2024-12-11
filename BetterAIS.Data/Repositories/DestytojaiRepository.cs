@@ -37,13 +37,24 @@ public class DestytojaiRepository : IDestytojaiRepository
 
     public async Task UpdateAsync(Destytojai entity)
     {
-        _context.Destytojai.Update(entity);
+        var existingEntity = await _context.Destytojai.FindAsync(entity.Vidko);
+        if (existingEntity == null)
+        {
+            throw new ArgumentException("destytojo nera");
+        }
+        _context.Entry(existingEntity).CurrentValues.SetValues(entity);
         await _context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(string id)
     {
-        var entity = await GetByIdAsync(id);
+        var entity = await _context.Destytojai.FirstOrDefaultAsync(x => x.Vidko == id);
+
+        if (entity == null)
+        {
+            throw new KeyNotFoundException();
+        }
+
         _context.Destytojai.Remove(entity);
         await _context.SaveChangesAsync();
     }
