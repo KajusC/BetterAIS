@@ -1,32 +1,66 @@
-﻿using BetterAIS.Data.Interfaces;
+﻿using BetterAIS.Data.Context;
+using BetterAIS.Data.Interfaces;
 using BetterAIS.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BetterAIS.Data.Repositories;
 
 public class PaskaitosRepository : IPaskaitosRepository
 {
+    private readonly BetterAisContext _context;
+
+    public PaskaitosRepository(BetterAisContext context)
+    {
+        _context = context;
+    }
+
     public async Task<IEnumerable<Paskaitos>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _context.Paskaitos
+            .Include(p => p.FkDestytojasVidkoNavigation)
+            .Include(p => p.FkIdFakultetasNavigation)
+            .Include(p => p.FkModulisKodasNavigation)
+            .Include(p => p.TipasNavigation)
+            .ToListAsync();
     }
 
     public async Task<Paskaitos> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Paskaitos
+            .Include(p => p.FkDestytojasVidkoNavigation)
+            .Include(p => p.FkIdFakultetasNavigation)
+            .Include(p => p.FkModulisKodasNavigation)
+            .Include(p => p.TipasNavigation)
+            .FirstOrDefaultAsync(p => p.IdPaskaita == id);
     }
 
     public async Task AddAsync(Paskaitos entity)
     {
-        throw new NotImplementedException();
+        await _context.Paskaitos.AddAsync(entity);
+        await _context.SaveChangesAsync();
     }
 
     public async Task UpdateAsync(Paskaitos entity)
     {
-        throw new NotImplementedException();
+        var existingEntity = await _context.Paskaitos.FindAsync(entity.IdPaskaita);
+        if (existingEntity == null)
+        {
+            throw new ArgumentException("Lecture not found.");
+        }
+
+        _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _context.Paskaitos.FindAsync(id);
+        if (entity == null)
+        {
+            throw new ArgumentException("Lecture not found.");
+        }
+
+        _context.Paskaitos.Remove(entity);
+        await _context.SaveChangesAsync();
     }
 }
