@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { FiClipboard } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,7 @@ export default function GradeManager() {
       <div className="dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-colors duration-300">
         <h2 className="text-xl font-semibold text-gray-700 mb-4 dark:text-white">
           <FiClipboard className="inline-block text-gray-500 mr-2" />
-          Grade managing
+          Pažymių valdymas
         </h2>
         <ul className="text-gray-600 dark:text-white">
         <li>
@@ -16,7 +16,7 @@ export default function GradeManager() {
               to="/addGrade"
               className="text-green-500 mt-4 inline-block hover:underline "
             >
-              Add a grade to student
+              Įrašyti studentui pažymį
             </Link>
           </li>
           <li>
@@ -24,7 +24,7 @@ export default function GradeManager() {
               to="/calculateGrades"
               className="text-green-500 mt-4 inline-block hover:underline "
             >
-              Calculate weighted grade ??
+              Apskaičiuoti pasvertą pažymį
             </Link>
           </li>
           <li>
@@ -32,7 +32,7 @@ export default function GradeManager() {
               to="/changeGrade"
               className="text-yellow-500 mt-4 inline-block hover:underline "
             >
-              Change student grade
+              Pakeisti studento pažymį
             </Link>
           </li>
           <li>
@@ -40,7 +40,7 @@ export default function GradeManager() {
               to="/deleteGrade"
               className="text-red-500 mt-4 inline-block hover:underline "
             >
-              Delete student grade
+              Ištrinti studento pažymį
             </Link>
           </li>
         </ul>

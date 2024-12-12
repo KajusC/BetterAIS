@@ -73,7 +73,9 @@ namespace BetterAIS.Server
             builder.Services.AddScoped<IUzduotysRepository, UzduotysRepository>();
             builder.Services.AddScoped<IUzsiemimoTipaiRepository, UzsiemimoTipaiRepository>();
             builder.Services.AddScoped<IPazymiaiRepository, PazymiaiRepository>();
-
+            builder.Services.AddScoped<IModuliaiRepository, ModuliaiRepository>();
+            builder.Services.AddScoped<IKabinetaiRepository, KabinetaiRepository>();
+            builder.Services.AddScoped<IFakultetaiRepository, FakultetaiRepository>();
 
             // services
             builder.Services.AddScoped<IFinansavimoTipaiService, FinansavimoTipaiService>();
@@ -85,6 +87,8 @@ namespace BetterAIS.Server
             builder.Services.AddScoped<IPazymiaiService, PazymiaiService>();
             builder.Services.AddScoped<IUzduotysService, UzduotysService>();
             builder.Services.AddScoped<IPaskaitosService, PaskaitosService>();
+            builder.Services.AddScoped<IModuliaiService, ModulisService>();
+            builder.Services.AddScoped<IFakultetaiService, FakultetaiService>();
 
             // Register AutoMapper
             var mapperConfig = AutoMapperConfig.Initialize();
@@ -170,7 +174,6 @@ namespace BetterAIS.Server
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "BetterAIS API V1");
-                    c.RoutePrefix = string.Empty; // Set Swagger UI at app's root
                 });
             }
 

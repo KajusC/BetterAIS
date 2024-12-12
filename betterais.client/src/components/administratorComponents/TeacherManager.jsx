@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { Link } from 'react-router-dom'
 import { FiClipboard } from 'react-icons/fi'
 
@@ -8,7 +8,7 @@ export default function TeacherManager() {
           <div className="dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-colors duration-300">
             <h2 className="text-xl font-semibold text-gray-700 mb-4 dark:text-white">
               <FiClipboard className="inline-block text-gray-500 mr-2" />
-              Teacher managing
+              Dėstytojų redagavimas
             </h2>
             <ul className="text-gray-600 dark:text-white">
               <li>
@@ -16,7 +16,7 @@ export default function TeacherManager() {
                   to="/add-teacher"
                   className="text-green-500 mt-4 inline-block hover:underline "
                 >
-                  Add teacher
+                  Pridėti dėstytoją
                 </Link>
               </li>
               {/* <li>
@@ -32,7 +32,7 @@ export default function TeacherManager() {
                   to="/delete-teacher"
                   className="text-red-500 mt-4 inline-block hover:underline "
                 >
-                  Delete teacher
+                  Ištrinti dėstytoją
                 </Link>
               </li>
               {/* <li>
@@ -48,7 +48,7 @@ export default function TeacherManager() {
                   to="/showAllTeachers"
                   className="text-blue-500 mt-4 inline-block hover:underline "
                 >
-                  Display all teachers
+                  Rodyti visus dėstytojus
                 </Link>
               </li>
             </ul>

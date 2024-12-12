@@ -1,16 +1,16 @@
-import React from 'react';
+﻿import React from 'react';
 
 const Timetable = ({ schedule }) => {
   return (
     <table className="min-w-full dark:bg-gray-800 dark:text-white border transition-colors duration-300">
       <thead>
         <tr>
-          <th className="py-2 border">Time</th>
-          <th className="py-2 border">Monday</th>
-          <th className="py-2 border">Tuesday</th>
-          <th className="py-2 border">Wednesday</th>
-          <th className="py-2 border">Thursday</th>
-          <th className="py-2 border">Friday</th>
+          <th className="py-2 border">Laikas</th>
+          <th className="py-2 border">Pirmadienis</th>
+          <th className="py-2 border">Antradienis</th>
+          <th className="py-2 border">Trečiadienis</th>
+          <th className="py-2 border">Ketvirtadienis</th>
+          <th className="py-2 border">Penktadienis</th>
         </tr>
       </thead>
       <tbody>

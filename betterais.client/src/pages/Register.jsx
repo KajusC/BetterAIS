@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 export default function Register() {
   return (
@@ -10,34 +10,34 @@ export default function Register() {
 
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Vardas"
           className="w-full mb-2 p-2 border border-gray-300 dark:border-gray-700 rounded dark:bg-gray-700 dark:text-gray-200 transition-colors duration-300"
         />
         <input
           type="text"
-          placeholder="Surname"
+          placeholder="Pavardė"
           className="w-full mb-2 p-2 border border-gray-300 dark:border-gray-700 rounded dark:bg-gray-700 dark:text-gray-200 transition-colors duration-300"
         />
         <input
           type="text"
-          placeholder="Email"
+          placeholder="Paštas"
           className="w-full mb-2 p-2 border border-gray-300 dark:border-gray-700 rounded dark:bg-gray-700 dark:text-gray-200 transition-colors duration-300"
         />
 
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Slaptažodis"
           className="w-full mb-4 p-2 border border-gray-300 dark:border-gray-900 rounded dark:bg-gray-700 dark:text-gray-200 transition-colors duration-300"
         />
 
         <button className="w-full bg-blue-500 dark:bg-blue-800 hover:bg-blue-600 dark:hover:bg-blue-700 text-white p-2 rounded transition-colors duration-300">
-          Register
+          Registruotis
         </button>
 
         <p className="text-center mt-4 text-gray-800 dark:text-gray-200">
-            Already have an account?{" "}
+            Jau turite paskyrą?{" "}
             <a href="/login" className="text-blue-500">
-                Login
+                Prisijungti
             </a>
         </p>
 
