@@ -1,15 +1,11 @@
-﻿using System.Runtime.InteropServices;
-
-using BetterAIS.Business.DTO;
+﻿using BetterAIS.Business.DTO;
 using BetterAIS.Business.Interfaces;
-using BetterAIS.Business.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BetterAIS.Server.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
 public class PaskaitosController : ControllerBase
 {
     private readonly IPaskaitosService _paskaitosService;
@@ -20,37 +16,40 @@ public class PaskaitosController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<IEnumerable<PaskaitosDTO>> GetAll()
     {
-        var result = await _paskaitosService.GetAllAsync();
-        return Ok(result);
+        return await _paskaitosService.GetAllAsync();
     }
 
-    [HttpGet("{id_paskaita}")]
-    public async Task<IActionResult> Get(string id_paskaita)
+    [HttpGet("{id}")]
+    public async Task<PaskaitosDTO> GetById(int id)
     {
-        var result = await _paskaitosService.GetByIdAsync(id_paskaita);
-        return Ok(result);
+        return await _paskaitosService.GetByIdAsync(id);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] PaskaitosDTO model)
+    public async Task<IActionResult> Add([FromBody] PaskaitosDTO paskaita)
     {
-        await _paskaitosService.AddAsync(model);
+        await _paskaitosService.AddAsync(paskaita);
         return Ok();
     }
 
-    [HttpPut]
-    public async Task<IActionResult> Put([FromBody] PaskaitosDTO model)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(int id, [FromBody] PaskaitosDTO paskaita)
     {
-        await _paskaitosService.UpdateAsync(model);
+        if (id != paskaita.IdPaskaita)
+        {
+            return BadRequest("ID mismatch.");
+        }
+
+        await _paskaitosService.UpdateAsync(paskaita);
         return Ok();
     }
 
-    [HttpDelete("{id_paskaita}")]
-    public async Task<IActionResult> Delete(string id_paskaita)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
     {
-        await _paskaitosService.DeleteAsync(id_paskaita);
+        await _paskaitosService.DeleteAsync(id);
         return Ok();
     }
 }

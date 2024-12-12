@@ -15,7 +15,6 @@ import ShowGrades from "./gradePages/ShowGrades";
 import CalculateGrades from "./gradePages/CalculateGrades";
 import ChangeGrade from "./gradePages/ChangeGrade";
 import DeleteGrade from "./gradePages/DeleteGrade";
-import ViewAllGrades from "./gradePages/ViewAllGrades";
 
 // lecture pages
 import AddLecture from "./lecturePages/AddLecture";
@@ -36,7 +35,7 @@ import StudentProfile from "./studentPages/StudentProfile";
 // teacher pages
 import AddTeacher from "./teacherPages/AddTeacher";
 import AssignTeacher from "./teacherPages/AssignTeacher";
-import EditTeacherInfo from "./teacherPages/EditTeacherInfo";
+import ChangeTeacherInfo from "./teacherPages/ChangeTeacherInfo";
 import DeleteTeacher from "./teacherPages/DeleteTeacher";
 import ShowAllTeachers from "./teacherPages/ShowAllTeachers";
 import TeacherProfile from "./teacherPages/TeacherProfile";
@@ -46,62 +45,67 @@ import ErrorPage from "./ErrorPage";
 import Navbar from "../components/Navbar";
 
 const App = () => {
-    return (
-        <div className="min-h-screen bg-gray-50 flex flex-col dark:bg-gray-900  transition-colors duration-300">
-            <Navbar />
-            {/* Main Content */}
-            <main className="flex-grow p-6">
-                <Routes>
-                    <Route path="/" element={<MainWindow />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/dashboard" element={<DashboardPage />} />
-                    <Route path="/timetable" element={<TimetablePage />} />
+  return (
+    <div className="min-h-screen bg-gray-50 flex flex-col dark:bg-gray-900  transition-colors duration-300">
+      <Navbar />
+      {/* Main Content */}
+      <main className="flex-grow p-6">
+        <Routes>
+          <Route path="/" element={<MainWindow />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/timetable" element={<TimetablePage />} />
 
-                    <Route path="/administrator" element={<AdministratorWindow />} />
-                    <Route path="/student" element={<StudentWindow />} />
-                    <Route path="/teacher" element={<TeacherWindow />} />
+          <Route path="/administrator" element={<AdministratorWindow />} />
+          <Route path="/student" element={<StudentWindow />} />
+          <Route path="/teacher" element={<TeacherWindow />} />
 
-                    <Route path="/addGrade" element={<AddGrade />} />
-                    <Route path="/showGrades" element={<ShowGrades />} />
-                    <Route path="/calculateGrades" element={<CalculateGrades />} />
-                    <Route path="/changeGrade" element={<ChangeGrade />} />
-                    <Route path="/deleteGrade" element={<DeleteGrade />} />
-                    <Route path="/viewAllGrades" element={<ViewAllGrades />} />
+          <Route path="/addGrade" element={<AddGrade />} />
+          <Route path="/showGrades" element={<ShowGrades />} />
+          <Route path="/calculateGrades" element={<CalculateGrades />} />
+          <Route path="/changeGrade" element={<ChangeGrade />} />
+          <Route path="/deleteGrade" element={<DeleteGrade />} />
 
-                    <Route path="/addLecture" element={<AddLecture />} />
-                    <Route path="/assignLectureToTimetable" element={<AssignLectureToTimetable />} />
-                    <Route path="/deleteLecture" element={<DeleteLecture />} />
-                    <Route path="/displayFilteredTimetables" element={<DisplayFilteredTimetables />} />
-                    <Route path="/modifyLecture" element={<ModifyLecture />} />
+          <Route path="/addLecture" element={<AddLecture />} />
+          <Route
+            path="/assignLectureToTimetable"
+            element={<AssignLectureToTimetable />}
+          />
+          <Route path="/deleteLecture" element={<DeleteLecture />} />
+          <Route
+            path="/displayFilteredTimetables"
+            element={<DisplayFilteredTimetables />}
+          />
+          <Route path="/modifyLecture" element={<ModifyLecture />} />
 
-                    <Route path="/addStudent" element={<AddStudent />} />
-                    <Route path="/deleteStudent" element={<DeleteStudent />} />
-                    <Route path="/displayAllStudents" element={<DisplayAllStudents />} />
-                    <Route path="/displayStudentData" element={<DisplayStudentData />} />
-                    <Route path="/printToPdf" element={<PrintToPdf />} />
-                    <Route path="/StudentProfile" element={<StudentProfile />} />
+          <Route path="/addStudent" element={<AddStudent />} />
+          <Route path="/deleteStudent" element={<DeleteStudent />} />
+          <Route path="/displayAllStudents" element={<DisplayAllStudents />} />
+          <Route path="/displayStudentData" element={<DisplayStudentData />} />
+          <Route path="/printToPdf" element={<PrintToPdf />} />
+          <Route path="/StudentProfile" element={<StudentProfile />} />
 
-                    <Route path="/addTeacher" element={<AddTeacher />} />
-                    <Route path="/assignTeacher" element={<AssignTeacher />} />
-                    <Route path="/editTeacherInfo" element={<EditTeacherInfo />} />
-                    <Route path="/deleteTeacher" element={<DeleteTeacher />} />
-                    <Route path="/showAllTeachers" element={<ShowAllTeachers />} />
-                    <Route path="/TeacherProfile" element={<TeacherProfile />} />
+          <Route path="/add-teacher" element={<AddTeacher />} />
+          <Route path="/assignTeacher" element={<AssignTeacher />} />
+          <Route path="/edit-teacher/:vidko" element={<ChangeTeacherInfo />} />
+          <Route path="/delete-teacher" element={<DeleteTeacher />} />
+          <Route path="/showAllTeachers" element={<ShowAllTeachers />} />
+          <Route path="/teacher-profile/:vidko" element={<TeacherProfile />} />
 
-                    <Route path="*" element={<ErrorPage />} />
-                </Routes>
-            </main>
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </main>
 
-            {/* Footer */}
-            <footer className="bg-gray-800 text-white p-4 text-center">
-                <p>
-                    &copy; {new Date().getFullYear()} Better AIS | Kajus Černiauskas |
-                    Smiltė Linkauskaitė | Matas Motiejūnas | Ignas Vanagas{" "}
-                </p>
-            </footer>
-        </div>
-    );
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white p-4 text-center">
+        <p>
+          &copy; {new Date().getFullYear()} Better AIS | Kajus Černiauskas |
+          Smiltė Linkauskaitė | Matas Motiejūnas | Ignas Vanagas{" "}
+        </p>
+      </footer>
+    </div>
+  );
 };
 
 export default App;

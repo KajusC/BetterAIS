@@ -39,9 +39,10 @@ public class DestytojaiController : ControllerBase
         return Ok();
     }
 
-    [HttpPut]
-    public async Task<IActionResult> Put([FromBody] DestytojaiDTO model)
+    [HttpPut("{vidko}")]
+    public async Task<IActionResult> Put(string vidko, [FromBody] DestytojaiDTO model)
     {
+        model.Vidko = vidko;
         await _destytojaiService.UpdateAsync(model);
         return Ok();
     }

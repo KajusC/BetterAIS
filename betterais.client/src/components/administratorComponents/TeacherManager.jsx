@@ -13,42 +13,42 @@ export default function TeacherManager() {
             <ul className="text-gray-600 dark:text-white">
               <li>
                 <Link
-                  to="/addTeacher"
+                  to="/add-teacher"
                   className="text-green-500 mt-4 inline-block hover:underline "
                 >
                   Add teacher
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
-                  to="/editTeacherInfo"
+                  to="/edit-teacher"
                   className="text-yellow-500 mt-4 inline-block hover:underline "
                 >
-                  Edit teacher info
+                  edit teacher info
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
-                  to="/deleteTeacher"
+                  to="/delete-teacher"
                   className="text-red-500 mt-4 inline-block hover:underline "
                 >
                   Delete teacher
                 </Link>
               </li>
+              {/* <li>
+                <Link
+                  to="/teacher-profile"
+                  className="text-blue-500 mt-4 inline-block hover:underline "
+                >
+                  display teacher data
+                </Link>
+              </li> */}
               <li>
                 <Link
                   to="/showAllTeachers"
                   className="text-blue-500 mt-4 inline-block hover:underline "
                 >
-                  display teacher data
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/TeachersByFilter"
-                  className="text-blue-500 mt-4 inline-block hover:underline "
-                >
-                  display teachers by filter
+                  Display all teachers
                 </Link>
               </li>
             </ul>

@@ -5,7 +5,7 @@ namespace BetterAIS.Data.Models;
 
 public partial class StudijuPrograma
 {
-    public int ProgramosKodas { get; set; }
+    public string ProgramosKodas { get; set; } = null!;
 
     public string Pavadinimas { get; set; } = null!;
 
