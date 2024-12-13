@@ -24,7 +24,7 @@ public class DestytojaiRepository : IDestytojaiRepository
 
         if (entity == null)
         {
-            throw new Exception("Entity not found");
+            throw new Exception("Destytojas nerastas");
         }
         return entity;
     }
@@ -40,7 +40,7 @@ public class DestytojaiRepository : IDestytojaiRepository
         var existingEntity = await _context.Destytojai.FindAsync(entity.Vidko);
         if (existingEntity == null)
         {
-            throw new ArgumentException("destytojo nera");
+            throw new ArgumentException("Destytojas nerastas");
         }
         _context.Entry(existingEntity).CurrentValues.SetValues(entity);
         await _context.SaveChangesAsync();
@@ -63,5 +63,11 @@ public class DestytojaiRepository : IDestytojaiRepository
     {
         var entity = await _context.Destytojai.OrderByDescending(x => x.Vidko).FirstOrDefaultAsync();
         return entity?.Vidko;
+    }
+
+    public async Task<List<Paskaitos>> GetTeacherTimetable(string vidko)
+    {
+        return await _context.Paskaitos.Where(p => p.FkDestytojasVidko == vidko)
+        .ToListAsync();
     }
 }

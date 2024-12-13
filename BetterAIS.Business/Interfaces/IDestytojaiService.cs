@@ -13,5 +13,7 @@ namespace BetterAIS.Business.Interfaces
         Task UpdateAsync(DestytojaiDTO destytojaiModel);
 
         Task DeleteAsync(string vidko);
+
+        Task<List<DestytojaiDTO>> GetSuggestedTeachersForModule(string moduleId);
     }
 }

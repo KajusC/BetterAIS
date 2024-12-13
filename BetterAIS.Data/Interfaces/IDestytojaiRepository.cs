@@ -10,5 +10,6 @@ namespace BetterAIS.Data.Interfaces
     public interface IDestytojaiRepository : IRepository<Destytojai, string>
     {
         Task<string> GetLatestVidkoAsync();
+        Task<List<Paskaitos>> GetTeacherTimetable(string vidko);
     }
 }

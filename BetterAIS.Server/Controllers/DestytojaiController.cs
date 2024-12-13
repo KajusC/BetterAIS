@@ -53,4 +53,22 @@ public class DestytojaiController : ControllerBase
         await _destytojaiService.DeleteAsync(vidko);
         return Ok();
     }
+    [HttpGet("suggest-teachers/{moduleId}")]
+    public async Task<IActionResult> SuggestTeachers(string moduleId)
+    {
+        try
+        {
+            var result = await _destytojaiService.GetSuggestedTeachersForModule(moduleId);
+            if (result == null || !result.Any())
+            {
+                return NotFound(new { message = "No suitable teachers found for the selected module" });
+            }
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
+    }
 }
