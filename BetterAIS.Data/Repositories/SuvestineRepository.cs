@@ -31,6 +31,7 @@ public class SuvestineRepository : ISuvestineRepository
             .Include(x=>x.FkIdPaskaitaNavigation)
             .Include(x=>x.FkIdUzduotisNavigation)
             .Include(x=>x.FkStudentasVidkoNavigation)
+            .Include(x=>x.Pazymiais)
             .FirstOrDefaultAsync(x => x.IdSuvestine == id);
 
         if (entity == null)

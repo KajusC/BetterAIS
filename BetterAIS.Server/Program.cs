@@ -89,6 +89,7 @@ namespace BetterAIS.Server
             builder.Services.AddScoped<IPaskaitosService, PaskaitosService>();
             builder.Services.AddScoped<IModuliaiService, ModulisService>();
             builder.Services.AddScoped<IFakultetaiService, FakultetaiService>();
+            builder.Services.AddScoped<ISuvestinesService, SuvestinesService>();
 
             // Register AutoMapper
             var mapperConfig = AutoMapperConfig.Initialize();

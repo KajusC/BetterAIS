@@ -10,7 +10,6 @@ namespace BetterAIS.Server.Controllers
     public class SuvestinesController : ControllerBase
     {
         private readonly ISuvestinesService _suvestinesService;
-        private readonly IVartotojaiService _vartotojaiService;
 
         public SuvestinesController(ISuvestinesService suvestinesService)
         {
@@ -23,7 +22,7 @@ namespace BetterAIS.Server.Controllers
             return await _suvestinesService.GetAllAsync();
         }
 
-        [HttpGet("{vidko}")]
+        [HttpGet("{id}")]
         public async Task<SuvestinesDTO> Get(int id)
         {
             return await _suvestinesService.GetByIdAsync(id);

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BetterAIS.Business.Services
 {
-    internal class SuvestinesService : ISuvestinesService
+    public class SuvestinesService : ISuvestinesService
     {
         private readonly ISuvestineRepository _repository;
         private readonly IMapper _mapper;
