@@ -28,6 +28,18 @@ public class DestytojaiRepository : IDestytojaiRepository
         }
         return entity;
     }
+    public async Task<List<string>> GetDistinctKvalifikacija()
+    {
+        return  await _context.Destytojai.Select(d => d.Kvalifikacija).Distinct().ToListAsync();
+    }
+    public async Task<IEnumerable<Destytojai>> GetFilteredByKvalifikacija(string kvalifikacija)
+    {
+        if (string.IsNullOrEmpty(kvalifikacija))
+        {
+            return await _context.Destytojai.ToListAsync();
+        }
+        return await _context.Destytojai.Where(d=>d.Kvalifikacija == kvalifikacija).ToListAsync();
+    }
 
     public async Task AddAsync(Destytojai entity)
     {
@@ -70,4 +82,5 @@ public class DestytojaiRepository : IDestytojaiRepository
         return await _context.Paskaitos.Where(p => p.FkDestytojasVidko == vidko)
         .ToListAsync();
     }
+
 }

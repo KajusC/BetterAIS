@@ -4,6 +4,7 @@ using AutoMapper;
 using BetterAIS.Data.Interfaces;
 using BetterAIS.Data.Models;
 using BetterAIS.Data.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BetterAIS.Business.Services
 {
@@ -15,9 +16,10 @@ namespace BetterAIS.Business.Services
         private readonly IMapper _mapper;
         private readonly IVartotojaiService _vartotojaiService;
 
-        public DestytojaiService(IDestytojaiRepository repository, IVartotojaiService vartotojaiService, IMapper mapper)
+        public DestytojaiService(IDestytojaiRepository repository, IModuliaiRepository moduliaiRepository, IVartotojaiService vartotojaiService, IMapper mapper)
         {
             _repository = repository;
+            _moduliaiRepository = moduliaiRepository;
             _vartotojaiService = vartotojaiService;
             _mapper = mapper;
         }
@@ -32,6 +34,19 @@ namespace BetterAIS.Business.Services
         {
             var entity = await _repository.GetByIdAsync(vidko);
             return _mapper.Map<DestytojaiDTO>(entity);
+        }
+
+        public async Task <List<string>> GetDistinctKvalifikacija()
+        {
+            return await _repository.GetDistinctKvalifikacija();
+        }
+
+        public async Task<IEnumerable<DestytojaiDTO>> GetFilteredByKvalifikacija(string kvalifikacija)
+        {
+            var entities = await _repository.GetFilteredByKvalifikacija(kvalifikacija);
+
+            return _mapper.Map<IEnumerable<DestytojaiDTO>>(entities);
+
         }
 
         public async Task AddAsync(DestytojaiDTO destytojaiModel)
@@ -97,19 +112,16 @@ namespace BetterAIS.Business.Services
             {
                 //destytojui tenkantys moduliai
                 List<Moduliai> modulesForTeacher = await _moduliaiRepository.GetModulesByTeacherIdAsync(teacher.Vidko);
-                if (modulesForTeacher == null) throw new Exception("failed to get modules of teacher");
 
-                var totalClassesPerWeek = -1;
                 //kiek uzsiemimu tenka destytojui
-                totalClassesPerWeek = modulesForTeacher.Sum(m => int.Parse(m.UzsiemimuKiekis));
-                if (totalClassesPerWeek < 0) throw new Exception("nesusumuoja destytojo paskaitu");
+               var totalClassesPerWeek = modulesForTeacher.Sum(m => int.Parse(m.UzsiemimuKiekis));
 
                 // random skaicius
                 if (totalClassesPerWeek >= 10) continue;
 
                 // destytojui tenkancios paskaitos
                 List<Paskaitos> teacherTimetable = await GetTeacherTimetable(teacher.Vidko);
-                if (teacherTimetable == null) throw new Exception("failed to get all classes of teacher");
+
                 //
                 if (IsModuleScheduleCompatible(module, teacherTimetable))
                 {

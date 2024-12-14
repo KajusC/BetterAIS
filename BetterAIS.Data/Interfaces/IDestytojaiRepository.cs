@@ -11,5 +11,7 @@ namespace BetterAIS.Data.Interfaces
     {
         Task<string> GetLatestVidkoAsync();
         Task<List<Paskaitos>> GetTeacherTimetable(string vidko);
+        Task <List<string>> GetDistinctKvalifikacija();
+        Task<IEnumerable<Destytojai>> GetFilteredByKvalifikacija(string kvalifikacija);
     }
 }
