@@ -7,7 +7,7 @@ export default function GradeManager() {
         <div className="dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-colors duration-300">
             <h2 className="text-xl font-semibold text-gray-700 mb-4 dark:text-white">
                 <FiClipboard className="inline-block text-gray-500 mr-2" />
-                Grade Management
+                Paþymiø valdymas
             </h2>
             <ul className="text-gray-600 dark:text-white">
                 <li>
@@ -15,7 +15,7 @@ export default function GradeManager() {
                         to="/addGrade"
                         className="text-green-500 mt-4 inline-block hover:underline"
                     >
-                        Add a grade to student
+                        Pridëti paþymá studentui
                     </Link>
                 </li>
                 <li>
@@ -23,7 +23,7 @@ export default function GradeManager() {
                         to="/calculateGrades"
                         className="text-blue-500 mt-4 inline-block hover:underline"
                     >
-                        Calculate weighted grade
+                        Apskaièiuoti svertiná paþymá
                     </Link>
                 </li>
                 <li>
@@ -31,7 +31,7 @@ export default function GradeManager() {
                         to="/changeGrade"
                         className="text-yellow-500 mt-4 inline-block hover:underline"
                     >
-                        Edit student grade
+                        Redaguoti studento paþymá
                     </Link>
                 </li>
                 <li>
@@ -39,7 +39,7 @@ export default function GradeManager() {
                         to="/deleteGrade"
                         className="text-red-500 mt-4 inline-block hover:underline"
                     >
-                        Delete student grade
+                        Iðtrinti studento paþymá
                     </Link>
                 </li>
                 <li>
@@ -47,7 +47,7 @@ export default function GradeManager() {
                         to="/showGrades"
                         className="text-blue-500 mt-4 inline-block hover:underline"
                     >
-                        View all grades
+                        Perþiûrëti visus paþymius
                     </Link>
                 </li>
             </ul>

@@ -19,8 +19,8 @@ const RecentGrades = () => {
                     setGrades(data.slice(0, 5));
                 }
             } catch (err) {
-                console.error("Error fetching grades:", err);
-                setError("Failed to fetch grades.");
+                console.error("Klaida gaunant paþymius:", err);
+                setError("Nepavyko gauti paþymiø.");
             } finally {
                 setLoading(false);
             }
@@ -33,20 +33,20 @@ const RecentGrades = () => {
         <div className="dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-colors duration-300">
             <h2 className="text-xl font-semibold text-gray-700 mb-4 dark:text-white">
                 <FiClipboard className="inline-block text-gray-500 mr-2" />
-                Recent Grades
+                Naujausi paþymiai
             </h2>
-            {loading && <p className="text-gray-600 dark:text-white">Loading recent grades...</p>}
+            {loading && <p className="text-gray-600 dark:text-white">Ákeliami naujausi paþymiai...</p>}
             {error && <p className="text-red-500">{error}</p>}
             {noRecentGrades && !loading && !error && (
-                <p className="text-gray-600 dark:text-white">No recent grades found.</p>
+                <p className="text-gray-600 dark:text-white">Naujausiø paþymiø nerasta.</p>
             )}
             {!noRecentGrades && !loading && !error && (
                 <ul className="text-gray-600 dark:text-white mb-4">
                     {grades.map((grade) => (
                         <li key={grade.idPazymys} className="mb-2">
-                            <strong>Grade:</strong> {grade.ivertinimas}/10
+                            <strong>Paþymys:</strong> {grade.ivertinimas}/10
                             <br />
-                            <strong>Date:</strong> {new Date(grade.data).toLocaleDateString()}
+                            <strong>Data:</strong> {new Date(grade.data).toLocaleDateString()}
                         </li>
                     ))}
                 </ul>
@@ -55,7 +55,7 @@ const RecentGrades = () => {
                 to="/showGrades"
                 className="text-blue-500 mt-4 inline-block hover:underline"
             >
-                View All Grades
+                Perþiûrëti visus paþymius
             </Link>
         </div>
     );

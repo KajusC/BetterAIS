@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getGradeById, updateGrade } from "../../scripts/grades";
 
-export default function ChangeGrade() {
-    const { id } = useParams(); // Retrieve the grade ID from the route parameters
+export default function KeistiPazymi() {
+    const { id } = useParams(); // Gauti paþymio ID ið marðruto parametrø
     const navigate = useNavigate();
     const [gradeData, setGradeData] = useState({
         ivertinimas: "",
@@ -12,14 +12,14 @@ export default function ChangeGrade() {
     });
 
     useEffect(() => {
-        // Fetch the grade data when the component loads
+        // Gauti paþymio duomenis, kai komponentas uþsikrauna
         const fetchGrade = async () => {
             try {
-                const data = await getGradeById(id); // Fetch grade by ID
+                const data = await getGradeById(id); // Gauti paþymá pagal ID
                 setGradeData(data);
             } catch (error) {
-                console.error("Error fetching grade:", error);
-                alert("Failed to fetch grade.");
+                console.error("Klaida gaunant paþymá:", error);
+                alert("Nepavyko gauti paþymio.");
             }
         };
         fetchGrade();
@@ -33,21 +33,21 @@ export default function ChangeGrade() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await updateGrade(id, gradeData); // Update the grade with the new data
-            alert("Grade updated successfully!");
-            navigate("/show-grades"); // Navigate back to the grades list
+            await updateGrade(id, gradeData); // Atnaujinti paþymá su naujais duomenimis
+            alert("Paþymys sëkmingai atnaujintas!");
+            navigate("/rodyti-pazymius"); // Gráþti á paþymiø sàraðà
         } catch (error) {
-            console.error("Error updating grade:", error);
-            alert("Failed to update grade.");
+            console.error("Klaida atnaujinant paþymá:", error);
+            alert("Nepavyko atnaujinti paþymio.");
         }
     };
 
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-2xl font-bold mb-4">Change Grade</h2>
+            <h2 className="text-2xl font-bold mb-4">Keisti Paþymá</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <label className="block text-sm font-medium">Ivertinimas</label>
+                    <label className="block text-sm font-medium">Ávertinimas</label>
                     <input
                         type="number"
                         name="ivertinimas"
@@ -69,7 +69,7 @@ export default function ChangeGrade() {
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium">ID Suvestine</label>
+                    <label className="block text-sm font-medium">ID Suvestinë</label>
                     <input
                         type="number"
                         name="idSuvestine"
@@ -83,7 +83,7 @@ export default function ChangeGrade() {
                     type="submit"
                     className="bg-blue-500 text-white px-4 py-2 rounded"
                 >
-                    Update Grade
+                    Atnaujinti Paþymá
                 </button>
             </form>
         </div>
