@@ -1,8 +1,14 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext"; // Assuming you have an AuthContext
+import { useAuth } from "../contexts/AuthContext";
 
-const ProtectedRoute = ({ allowedRoles, children }) => {
+const ROLE_HIERARCHY = {
+  student: 1,
+  teacher: 2,
+  admin: 3,
+};
+
+const ProtectedRoute = ({ minRole, children }) => {
   const { user } = useAuth();
 
   if (!user) {
@@ -10,8 +16,9 @@ const ProtectedRoute = ({ allowedRoles, children }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (!allowedRoles.includes(user.role)) {
-    // Redirect to an error page if the role is not authorized
+  const userRoleLevel = ROLE_HIERARCHY[user.role] || 0;
+  if (userRoleLevel < ROLE_HIERARCHY[minRole]) {
+    // Redirect to an error page if the user doesn't have sufficient access
     return <Navigate to="/error" replace />;
   }
 

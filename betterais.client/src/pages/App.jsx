@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import ProtectedRoute from "../scripts/ProtectedRoute";
+
 import MainWindow from "./Windows/MainWindow";
 import LoginPage from "./LoginPage";
 import Register from "./Register";
@@ -55,43 +58,54 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/timetable" element={<TimetablePage />} />
 
-          <Route path="/administrator" element={<AdministratorWindow />} />
-          <Route path="/student" element={<StudentWindow />} />
-          <Route path="/teacher" element={<TeacherWindow />} />
-
-          <Route path="/addGrade" element={<AddGrade />} />
-          <Route path="/showGrades" element={<ShowGrades />} />
-          <Route path="/calculateGrades" element={<CalculateGrades />} />
-          <Route path="/changeGrade" element={<ChangeGrade />} />
-          <Route path="/deleteGrade" element={<DeleteGrade />} />
-
-          <Route path="/addLecture" element={<AddLecture />} />
+          {/* Admin privileges */}
+          <Route path="/administrator" element={
+            <ProtectedRoute minRole="Administratorius">
+            <AdministratorWindow />
+          </ProtectedRoute>
+            } />
+          <Route path="/addLecture" element={
+                        <ProtectedRoute minRole="Administratorius">
+            <AddLecture />
+          </ProtectedRoute>
+            } />
           <Route
             path="/assignLectureToTimetable"
-            element={<AssignLectureToTimetable />}
+            element={
+              <ProtectedRoute minRole="Administratorius">
+            <AssignLectureToTimetable /></ProtectedRoute>}
           />
-          <Route path="/deleteLecture" element={<DeleteLecture />} />
+          <Route path="/deleteLecture" element={<ProtectedRoute minRole="Administratorius"><DeleteLecture /></ProtectedRoute>} />
+          <Route path="/add-teacher" element={<ProtectedRoute minRole="Administratorius"><AddTeacher /></ProtectedRoute>} />
+          <Route path="/assignTeacher" element={<ProtectedRoute minRole="Administratorius"><AssignTeacher /></ProtectedRoute>} />
+          <Route path="/edit-teacher/:vidko" element={<ProtectedRoute minRole="Administratorius"><ChangeTeacherInfo /></ProtectedRoute>} />
+          <Route path="/delete-teacher" element={<ProtectedRoute minRole="Administratorius"><DeleteTeacher /></ProtectedRoute>} />
+          <Route path="/showAllTeachers" element={<ProtectedRoute minRole="Administratorius"><ShowAllTeachers /></ProtectedRoute>} />
+          <Route path="/addStudent" element={<ProtectedRoute minRole="Administratorius"><AddStudent /></ProtectedRoute>} />
+          <Route path="/deleteStudent" element={<ProtectedRoute minRole="Administratorius"><DeleteStudent /></ProtectedRoute>} />
+          <Route path="/modifyLecture" element={<ProtectedRoute minRole="Administratorius"><ModifyLecture /></ProtectedRoute>} />
+
+          {/* Teacher pages */}
+          <Route path="/teacher-profile/:vidko" element={<ProtectedRoute minRole="Dėstytojas"><TeacherProfile /></ProtectedRoute>} />
+          <Route path="/teacher" element={<ProtectedRoute minRole="Dėstytojas"><TeacherWindow /></ProtectedRoute>} />
+          <Route path="/addGrade" element={<ProtectedRoute minRole="Dėstytojas"><AddGrade /></ProtectedRoute>} />
+          <Route path="/showGrades" element={<ProtectedRoute minRole="Dėstytojas"><ShowGrades /></ProtectedRoute>} />
+          <Route path="/calculateGrades" element={<ProtectedRoute minRole="Dėstytojas"><CalculateGrades /></ProtectedRoute>} />
+          <Route path="/changeGrade" element={<ProtectedRoute minRole="Dėstytojas"><ChangeGrade /></ProtectedRoute>} />
+          <Route path="/deleteGrade" element={<ProtectedRoute minRole="Dėstytojas"><DeleteGrade /></ProtectedRoute>} />
+          <Route path="/displayAllStudents" element={<ProtectedRoute minRole="Dėstytojas"><DisplayAllStudents /></ProtectedRoute>} />
+          <Route path="/displayStudentData" element={<ProtectedRoute minRole="Dėstytojas"><DisplayStudentData /></ProtectedRoute>} />
+          <Route path="/printToPdf" element={<ProtectedRoute minRole="Dėstytojas"><PrintToPdf /></ProtectedRoute>} />
+
+          {/* Student privileges */}
+          <Route path="/student" element={<ProtectedRoute minRole="Studentas"><StudentWindow /></ProtectedRoute>} />
+          <Route path="/StudentProfile" element={<ProtectedRoute minRole="Studentas"><StudentProfile /></ProtectedRoute>} />
           <Route
             path="/displayFilteredTimetables"
             element={<DisplayFilteredTimetables />}
           />
-          <Route path="/modifyLecture" element={<ModifyLecture />} />
-
-          <Route path="/addStudent" element={<AddStudent />} />
-          <Route path="/deleteStudent" element={<DeleteStudent />} />
-          <Route path="/displayAllStudents" element={<DisplayAllStudents />} />
-          <Route path="/displayStudentData" element={<DisplayStudentData />} />
-          <Route path="/printToPdf" element={<PrintToPdf />} />
-          <Route path="/StudentProfile" element={<StudentProfile />} />
-
-          <Route path="/add-teacher" element={<AddTeacher />} />
-          <Route path="/assignTeacher" element={<AssignTeacher />} />
-          <Route path="/edit-teacher/:vidko" element={<ChangeTeacherInfo />} />
-          <Route path="/delete-teacher" element={<DeleteTeacher />} />
-          <Route path="/showAllTeachers" element={<ShowAllTeachers />} />
-          <Route path="/teacher-profile/:vidko" element={<TeacherProfile />} />
+          <Route path="/timetable" element={<TimetablePage />} />
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>
