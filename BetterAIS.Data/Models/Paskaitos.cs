@@ -7,7 +7,7 @@ public partial class Paskaitos
 {
     public int IdPaskaita { get; set; }
 
-    public DateOnly Data { get; set; }
+    public DateTime Data { get; set; }
 
     public int Trukmė { get; set; }
 

@@ -1,32 +1,46 @@
-﻿using BetterAIS.Data.Interfaces;
+﻿using BetterAIS.Data.Context;
+using BetterAIS.Data.Interfaces;
 using BetterAIS.Data.Models;
 
 namespace BetterAIS.Data.Repositories;
 
 public class StudentoStatusaiRepository : IStudentoStatusaiRepository
 {
+    private readonly BetterAisContext _context;
+
+    public StudentoStatusaiRepository(BetterAisContext context)
+    {
+        _context = context;
+    }
     public async Task<IEnumerable<StudentoStatusai>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return _context.StudentoStatusai.ToList();
     }
 
     public async Task<StudentoStatusai> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.StudentoStatusai.FindAsync(id);
     }
 
     public async Task AddAsync(StudentoStatusai entity)
     {
-        throw new NotImplementedException();
+        await _context.StudentoStatusai.AddAsync(entity);
+        await _context.SaveChangesAsync();
     }
 
     public async Task UpdateAsync(StudentoStatusai entity)
     {
-        throw new NotImplementedException();
+        _context.StudentoStatusai.Update(entity);
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _context.StudentoStatusai.FindAsync(id);
+        if (entity != null)
+        {
+            _context.StudentoStatusai.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
     }
 }

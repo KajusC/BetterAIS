@@ -50,7 +50,7 @@ namespace BetterAIS.Server.Controllers
         }
 
         [HttpPost("{path}")]
-        public async Task<IActionResult> CreatePDF(string path, [FromQ] string vidko)
+        public async Task<IActionResult> CreatePDF(string path, [FromQuery] string vidko)
         {
             await _pdfService.CreatePDF(vidko, path);
             return Ok();

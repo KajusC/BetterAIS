@@ -32,8 +32,4 @@
     <ProjectReference Include="..\BetterAIS.Data\BetterAIS.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
 </Project>

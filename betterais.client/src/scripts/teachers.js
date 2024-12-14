@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://localhost:7049/api/destytojai'; // Update with your backend URL
+const API_URL = 'https://localhost:7049/api/destytojai';
 
 export const getAllTeachers = async () => {
     try { 
@@ -11,6 +11,17 @@ export const getAllTeachers = async () => {
       console.error('Error fetching teachers:', error);
       throw error;
     }
+};
+export const getFilteredTeachers = async (kvalifikacija) => {
+  try { 
+      const response = await axios.get(`${API_URL}/filter`, {  params: { kvalifikacija },});
+      console.log('Filtered teachers response:', response.data);
+      return response.data;
+  }
+  catch(error){
+    console.error('Error fetching teachers:', error);
+    throw error;
+  }
 };
 
 export const getTeacherByVidko = async (vidko) => {
@@ -49,6 +60,15 @@ export const deleteTeacher = async (vidko) => {
     return response.data;
   } catch (error) {
     console.error('Error deleting teacher:', error);
+    throw error;
+  }
+};
+export const getKvalifikacijaOptions = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/kvalifikacija-options`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching kvalifikacija options:', error);
     throw error;
   }
 };

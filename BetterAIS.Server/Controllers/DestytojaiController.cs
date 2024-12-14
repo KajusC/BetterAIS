@@ -2,8 +2,11 @@ using System.Runtime.InteropServices;
 
 using BetterAIS.Business.DTO;
 using BetterAIS.Business.Interfaces;
+using BetterAIS.Data.Interfaces;
+using BetterAIS.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR.Protocol;
 
 namespace BetterAIS.Server.Controllers;
 
@@ -32,6 +35,27 @@ public class DestytojaiController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("kvalifikacija-options")]
+    public async Task<IActionResult> GetKvalifikacijaOptions()
+    {
+        var kvalifikacijaOptions = await _destytojaiService.GetDistinctKvalifikacija();
+        return Ok(kvalifikacijaOptions);
+    }
+
+    [HttpGet("filter")]
+    public async Task<IActionResult> GetFiltered([FromQuery] string kvalifikacija)
+    {
+        IEnumerable<DestytojaiDTO> result;
+
+        if (string.IsNullOrEmpty(kvalifikacija))
+        {
+            result = await _destytojaiService.GetAllAsync();
+        }
+        else
+           result = await _destytojaiService.GetFilteredByKvalifikacija(kvalifikacija);
+        return Ok(result);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] DestytojaiDTO model)
     {
@@ -52,5 +76,23 @@ public class DestytojaiController : ControllerBase
     {
         await _destytojaiService.DeleteAsync(vidko);
         return Ok();
+    }
+    [HttpGet("suggest-teachers/{moduleId}")]
+    public async Task<IActionResult> SuggestTeachers(string moduleId)
+    {
+        try
+        {
+            var result = await _destytojaiService.GetSuggestedTeachersForModule(moduleId);
+            if (result == null || !result.Any())
+            {
+                return NotFound(new { message = "No suitable teachers found for the selected module" });
+            }
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
     }
 }

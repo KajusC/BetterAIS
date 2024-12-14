@@ -2,6 +2,7 @@
 using BetterAIS.Data.Interfaces;
 using BetterAIS.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 
 namespace BetterAIS.Data.Repositories;
@@ -58,5 +59,13 @@ public class ModuliaiRepository : IModuliaiRepository
 
         _context.Moduliai.Remove(entity);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<Moduliai>> GetModulesByTeacherIdAsync(string vidko)
+    {
+        return await _context.Moduliai
+                .Where(m => m.FkDestytojasVidko == vidko)
+                .Include(m => m.Paskaitos)
+                .ToListAsync();
     }
 }
