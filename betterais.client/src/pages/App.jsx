@@ -16,6 +16,8 @@ import CalculateGrades from "./gradePages/CalculateGrades";
 import ChangeGrade from "./gradePages/ChangeGrade";
 import DeleteGrade from "./gradePages/DeleteGrade";
 
+
+
 // lecture pages
 import AddLecture from "./lecturePages/AddLecture";
 import AssignLectureToTimetable from "./lecturePages/AssignLectureToTimetable";
@@ -61,11 +63,13 @@ const App = () => {
           <Route path="/student" element={<StudentWindow />} />
           <Route path="/teacher" element={<TeacherWindow />} />
 
-          <Route path="/addGrade" element={<AddGrade />} />
-          <Route path="/showGrades" element={<ShowGrades />} />
-          <Route path="/calculateGrades" element={<CalculateGrades />} />
-          <Route path="/changeGrade" element={<ChangeGrade />} />
-          <Route path="/deleteGrade" element={<DeleteGrade />} />
+                  <Route path="/addGrade" element={<AddGrade />} />
+                  <Route path="/showGrades" element={<ShowGrades />} />
+                  <Route path="/calculateGrades" element={<CalculateGrades />} />
+                  <Route path="/changeGrade" element={<ChangeGrade />} />
+                  <Route path="/deleteGrade" element={<DeleteGrade />} />
+
+
 
           <Route path="/addLecture" element={<AddLecture />} />
           <Route
