@@ -11,10 +11,15 @@ namespace BetterAIS.Server.Controllers
     {
         private readonly IStudentaiService _studentaiService;
         private readonly IVartotojaiService _vartotojaiService;
+        private readonly IPDFService _pdfService;
 
-        public StudentaiController(IStudentaiService studentaiService)
+        public StudentaiController(IStudentaiService studentaiService, 
+                    IVartotojaiService vartotojaiService,
+                    IPDFService pdfService)
         {
             _studentaiService = studentaiService;
+            _vartotojaiService = vartotojaiService;
+            _pdfService = pdfService;
         }
 
         [HttpGet]
@@ -41,6 +46,13 @@ namespace BetterAIS.Server.Controllers
         public async Task<IActionResult> Put(string id, [FromBody] StudentaiDTO studentaiModel)
         {
             await _studentaiService.UpdateAsync(studentaiModel);
+            return Ok();
+        }
+
+        [HttpPost("{path}")]
+        public async Task<IActionResult> CreatePDF(string path, [FromQ] string vidko)
+        {
+            await _pdfService.CreatePDF(vidko, path);
             return Ok();
         }
     }

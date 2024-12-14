@@ -85,4 +85,48 @@ public class VartotojaiService : IVartotojaiService
 
         await _vartotojaiRepository.AddAsync(vartotojaiEntity);
     }
+
+    public async Task UpdateStudentas(StudentaiDTO studentaiModel, VartotojaiDTO vartotojaiModel)
+    {
+        var studentaiEntity = _mapper.Map<Studentai>(studentaiModel);
+        var vartotojaiEntity = _mapper.Map<Vartotojai>(vartotojaiModel);
+
+        studentaiEntity.Vidko = studentaiEntity.Vidko.ToUpper();
+        vartotojaiEntity.Vidko = vartotojaiEntity.Vidko.ToUpper();
+
+        studentaiEntity.VidkoNavigation = vartotojaiEntity;
+
+        await _studentaiRepository.UpdateAsync(studentaiEntity);
+        await _vartotojaiRepository.UpdateAsync(vartotojaiEntity);
+    }
+
+    public async Task UpdateDestytojas(DestytojaiDTO destytojaiModel, VartotojaiDTO vartotojaiModel)
+    {
+        var destytojaiEntity = _mapper.Map<Destytojai>(destytojaiModel);
+        var vartotojaiEntity = _mapper.Map<Vartotojai>(vartotojaiModel);
+
+        destytojaiEntity.Vidko = destytojaiEntity.Vidko.ToUpper();
+        vartotojaiEntity.Vidko = vartotojaiEntity.Vidko.ToUpper();
+
+        destytojaiEntity.VidkoNavigation = vartotojaiEntity;
+
+        await _destytojaiRepository.UpdateAsync(destytojaiEntity);
+        await _vartotojaiRepository.UpdateAsync(vartotojaiEntity);
+    }
+
+    public async Task DeleteStudentas(string modelId)
+    {
+        await _studentaiRepository.DeleteAsync(modelId);
+
+        var vartotojas = await _vartotojaiRepository.GetByIdAsync(modelId);
+        await _vartotojaiRepository.DeleteAsync(vartotojas.Vidko);
+    }
+
+    public async Task DeleteDestytojas(string modelId)
+    {
+        await _destytojaiRepository.DeleteAsync(modelId);
+
+        var vartotojas = await _vartotojaiRepository.GetByIdAsync(modelId);
+        await _vartotojaiRepository.DeleteAsync(vartotojas.Vidko);
+    }
 }

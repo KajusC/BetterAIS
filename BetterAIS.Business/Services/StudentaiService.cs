@@ -3,6 +3,7 @@ using BetterAIS.Business.DTO;
 using BetterAIS.Business.Interfaces;
 using BetterAIS.Data.Interfaces;
 using BetterAIS.Data.Models;
+using QuestPDF;
 
 namespace BetterAIS.Business.Services;
 
@@ -51,12 +52,26 @@ public class StudentaiService : IStudentaiService
 
     public async Task UpdateAsync(StudentaiDTO studentaiModel)
     {
-        throw new NotImplementedException();
+        var user = await _vartotojaiService.GetByIdAsync(studentaiModel.Vidko);
+
+        var vartotojaiModel = new VartotojaiDTO
+        {
+            Vidko = studentaiModel.Vidko,
+            Slaptazodis = studentaiModel.Slaptazodis,
+            Vardas = studentaiModel.Vardas,
+            GimimoData = studentaiModel.GimimoData,
+            Pavarde = studentaiModel.Pavarde,
+            ElPastas = studentaiModel.ElPastas,
+            TelefonoNr = studentaiModel.TelefonoNr,
+            RoleId = studentaiModel.RoleId
+        };
+
+
+        await _vartotojaiService.UpdateStudentas(studentaiModel, vartotojaiModel);
     }
 
     public async Task DeleteAsync(string modelId)
     {
-        throw new NotImplementedException();
+        await _vartotojaiService.DeleteStudentas(modelId);
     }
-
 }

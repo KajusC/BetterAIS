@@ -40,6 +40,10 @@ public class VartotojaiRepository : IVartotojaiRepository
 
     public async Task UpdateAsync(Vartotojai entity)
     {
+        var existing = await GetByIdAsync(entity.Vidko);
+
+        entity.Slaptazodis = existing.Slaptazodis;
+
         _context.Vartotojai.Update(entity);
         await _context.SaveChangesAsync();
     }
