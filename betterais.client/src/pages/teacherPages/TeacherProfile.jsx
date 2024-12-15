@@ -22,13 +22,19 @@ const TeacherDetail = () => {
   }, [vidko]);
 
   const handleDelete = async () => {
+    const confirmDelete = window.confirm(`Ar tikrai norite trini dėstytoją, kurio VIDKO: ${vidko}?`);
+    if (!confirmDelete) {
+      navigate('/showAllTeachers');
+      return;
+    }
     try {
       await deleteTeacher(vidko);  // Delete teacher from the backend
-      alert('Teacher deleted successfully!');
-      navigate('/showAllTeachers');  // Redirect to View Teachers page
+      alert('Dėstytojas ištrintas!');
+      
+      navigate('/administrator');  // Redirect to View Teachers page
     } catch (error) {
       console.error('Error deleting teacher:', error);
-      alert('Failed to delete teacher.');
+      alert('Nepavyko ištrintni dėstytojo.');
     }
   };
 
@@ -36,21 +42,22 @@ const TeacherDetail = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4">Teacher Details</h2>
+      <h2 className="text-2xl font-bold mb-4">Dėstytojo informacija</h2>
       <div>
         <p><strong>Vidko:</strong> {teacher.vidko}</p>
-        <p><strong>Name:</strong> {teacher.vardas} {teacher.pavarde}</p>
+        <p><strong>Kvalifikacija:</strong> {teacher.kvalifikacija}</p>
+        {/* <p><strong>Vardas:</strong> {teacher.vardas} {teacher.pavarde}</p>
         <p><strong>Email:</strong> {teacher.elPastas}</p>
-        <p><strong>Phone:</strong> {teacher.telefonoNr}</p>
-        <p><strong>Birth Date:</strong> {teacher.gimimoData}</p>
-        <p><strong>Role ID:</strong> {teacher.roleId}</p>
+        <p><strong>Numeris:</strong> {teacher.telefonoNr}</p>
+
+        <p><strong>Gimimo data:</strong> {teacher.gimimoData}</p> */}
       </div>
       <div className="space-x-4 mt-4">
         <Link to={`/edit-teacher/${teacher.vidko}`}>
-          <button className="bg-yellow-500 text-white px-4 py-2 rounded">Edit Teacher Info</button>
+          <button className="bg-yellow-500 text-white px-4 py-2 rounded">Redaguoti informaciją</button>
         </Link>
         <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={handleDelete}>
-          Delete Teacher
+          Trinti dėstytoją
         </button>
       </div>
     </div>

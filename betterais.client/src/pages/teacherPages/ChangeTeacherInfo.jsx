@@ -40,17 +40,17 @@ const EditTeacher = () => {
     e.preventDefault();
     try {
       await updateTeacher(vidko, teacherData);  // Update teacher
-      alert('Teacher info updated successfully!');
+      alert('Duomenys atnaujinti sėkmingai!');
       navigate(`/teacher-profile/${vidko}`);  // Redirect to teacher details page
     } catch (error) {
       console.error('Error updating teacher:', error);
-      alert('Failed to update teacher.');
+      alert('nepavyko atnaujint duomenų.');
     }
   };
 
   return (
     <div className="container mx-auto p-6">
-    <h2 className="text-2xl font-bold mb-4">Input new Teacher info</h2>
+    <h2 className="text-2xl font-bold mb-4">Įvesti naują informaciją</h2>
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label className="block text-sm font-medium">Vidko</label>
@@ -64,7 +64,7 @@ const EditTeacher = () => {
         />
       </div>
       <div>
-        <label className="block text-sm font-medium">Password</label>
+        <label className="block text-sm font-medium">Slaptažodis</label>
         <input
           type="password"
           name="slaptazodis"
@@ -75,7 +75,7 @@ const EditTeacher = () => {
         />
       </div>
       <div>
-        <label className="block text-sm font-medium">First Name</label>
+        <label className="block text-sm font-medium">Vardas</label>
         <input
           type="text"
           name="vardas"
@@ -86,7 +86,7 @@ const EditTeacher = () => {
         />
       </div>
       <div>
-        <label className="block text-sm font-medium">Last Name</label>
+        <label className="block text-sm font-medium">Pavardė</label>
         <input
           type="text"
           name="pavarde"
@@ -108,7 +108,7 @@ const EditTeacher = () => {
         />
       </div>
       <div>
-        <label className="block text-sm font-medium">Phone Number</label>
+        <label className="block text-sm font-medium">Numeris</label>
         <input
           type="text"
           name="telefonoNr"
@@ -118,7 +118,7 @@ const EditTeacher = () => {
         />
       </div>
       <div>
-        <label className="block text-sm font-medium">Birth Date</label>
+        <label className="block text-sm font-medium">Gimimo data</label>
         <input
           type="date"
           name="gimimoData"

@@ -11,7 +11,7 @@ export default function AddTeacher() {
     elPastas: '',
     telefonoNr: '',
     gimimoData: '',
-    roleId: '', // example role ID
+    roleId: '',
     kvalifikacija: '',
   });
   const navigate = useNavigate();
@@ -27,18 +27,18 @@ export default function AddTeacher() {
       await addTeacher(formData);
       
       // Show success message and navigate to a different page (e.g., home or teacher list)
-      alert('Teacher added successfully!');
+      alert('Dėstytojas pridėtas sėkmingai!');
       navigate('/');
       
     } catch (error) {
-      console.error('Error adding teacher:', error);
-      alert('Failed to add teacher.');
+      console.error('Nepavyko pridėti dėstytojo:', error);
+      alert('Nepavyko pridėti dėstytojo.');
     }
   };
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4">Add Teacher</h2>
+      <h2 className="text-2xl font-bold mb-4">Pridėti dėstytoją</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium">Vidko</label>
@@ -52,7 +52,7 @@ export default function AddTeacher() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">Password</label>
+          <label className="block text-sm font-medium">Slaptažodis</label>
           <input
             type="password"
             name="slaptazodis"
@@ -63,7 +63,7 @@ export default function AddTeacher() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">First Name</label>
+          <label className="block text-sm font-medium">Vardas</label>
           <input
             type="text"
             name="vardas"
@@ -74,7 +74,7 @@ export default function AddTeacher() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">Last Name</label>
+          <label className="block text-sm font-medium">Pavardė</label>
           <input
             type="text"
             name="pavarde"
@@ -96,7 +96,7 @@ export default function AddTeacher() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">Phone Number</label>
+          <label className="block text-sm font-medium">Telefono numeris</label>
           <input
             type="text"
             name="telefonoNr"
@@ -106,7 +106,7 @@ export default function AddTeacher() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">Birth Date</label>
+          <label className="block text-sm font-medium">Gimimo data</label>
           <input
             type="date"
             name="gimimoData"
@@ -141,7 +141,7 @@ export default function AddTeacher() {
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded"
         >
-          Add Teacher
+          Pridėti
         </button>
       </form>
     </div>
