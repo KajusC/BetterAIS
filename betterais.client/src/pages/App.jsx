@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 // Import context and pages
 import MainWindow from "./Windows/MainWindow";
 import LoginPage from "./LoginPage";
-import Register from "./Register";
 import DashboardPage from "./DashboardPage";
 
 // Windows
@@ -59,7 +58,6 @@ const App = () => {
           {/* General Pages */}
           <Route path="/" element={<MainWindow />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<DashboardPage />} />
 
                   {/* Admin Privileges */}
@@ -260,7 +258,7 @@ const App = () => {
             }
           />
           <Route
-            path="/printToPdf"
+            path="/printStudentPDF"
             element={
               <ProtectedRoute minRole="Dėstytojas">
                 <PrintToPdf />
@@ -303,7 +301,7 @@ const App = () => {
             }
           />
           <Route
-            path="/showGrades"
+            path="/showGrades/:studentId"
             element={
               <ProtectedRoute minRole="Studentas">
                 <ShowGrades />

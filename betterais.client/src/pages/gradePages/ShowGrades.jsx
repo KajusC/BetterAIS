@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { getGradesByStudentId } from "../../scripts/grades";
+import { useParams } from "react-router-dom";
 
-export default function ShowGrades({ studentId }) {
+export default function ShowGrades() {
+    const { studentId } = useParams();
     const [grades, setGrades] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

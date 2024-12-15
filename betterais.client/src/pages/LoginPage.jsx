@@ -60,9 +60,7 @@ const LoginPage = () => {
 
         <p className="text-center mt-4 text-gray-800 dark:text-gray-200">
           Neturite paskyros?{" "}
-          <a href="/register" className="text-blue-500">
-            Registruotis
-          </a>
+          Rašykite administratoriui, kad jums būtų suteikta prieiga.
         </p>
       </form>
     </div>
