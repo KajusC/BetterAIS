@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import StudentCard from '../components/studentComponents/StudentCard';
 import TeacherCard from '../components/TeacherComponents/TeacherCard';
 import AdministratorCard from '../components/administratorComponents/AdministratorCard';
@@ -25,10 +25,10 @@ const DashboardPage = () => {
 
   return (
     <div className="p-6 dark:text-white transition-colors duration-300">
-      <h1 className="text-3xl mb-4">Dashboard</h1>
+      <h1 className="text-3xl mb-4">Dashboardas</h1>
 
       <section>
-        <h2 className="text-2xl mb-2 ">Students</h2>
+        <h2 className="text-2xl mb-2 ">Studentai</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
           {students.map((student) => (
             <StudentCard key={student.id} student={student} />
@@ -37,7 +37,7 @@ const DashboardPage = () => {
       </section>
 
       <section>
-        <h2 className="text-2xl mb-2 mt-6">Teachers</h2>
+        <h2 className="text-2xl mb-2 mt-6">Dėstytojai</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {teachers.map((teacher) => (
             <TeacherCard key={teacher.id} teacher={teacher} />
@@ -46,7 +46,7 @@ const DashboardPage = () => {
       </section>
 
       <section>
-        <h2 className="text-2xl mb-2 mt-6">Administrators</h2>
+        <h2 className="text-2xl mb-2 mt-6">Administratoriai</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {administrators.map((admin) => (
             <AdministratorCard key={admin.id} admin={admin} />

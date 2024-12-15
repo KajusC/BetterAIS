@@ -40,14 +40,11 @@ namespace BetterAIS.Server
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            // 1. Bind JwtSettings from appsettings.json
             builder.Services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
 
-            // 2. Register JwtSettings for DI
             builder.Services.AddSingleton(resolver =>
                 resolver.GetRequiredService<IOptions<JwtSettings>>().Value);
 
-            // 3. Register Repositories and Services
             builder.Services.AddScoped<IAuthenticatorService, AuthenticatorService>();
             builder.Services.AddScoped<IVartotojaiService, VartotojaiService>();
             builder.Services.AddScoped<IRoleRepository, RoleRepository>();
@@ -73,7 +70,9 @@ namespace BetterAIS.Server
             builder.Services.AddScoped<IUzduotysRepository, UzduotysRepository>();
             builder.Services.AddScoped<IUzsiemimoTipaiRepository, UzsiemimoTipaiRepository>();
             builder.Services.AddScoped<IPazymiaiRepository, PazymiaiRepository>();
-
+            builder.Services.AddScoped<IModuliaiRepository, ModuliaiRepository>();
+            builder.Services.AddScoped<IKabinetaiRepository, KabinetaiRepository>();
+            builder.Services.AddScoped<IFakultetaiRepository, FakultetaiRepository>();
 
             // services
             builder.Services.AddScoped<IFinansavimoTipaiService, FinansavimoTipaiService>();
@@ -85,6 +84,11 @@ namespace BetterAIS.Server
             builder.Services.AddScoped<IPazymiaiService, PazymiaiService>();
             builder.Services.AddScoped<IUzduotysService, UzduotysService>();
             builder.Services.AddScoped<IPaskaitosService, PaskaitosService>();
+            builder.Services.AddScoped<IModuliaiService, ModulisService>();
+            builder.Services.AddScoped<IFakultetaiService, FakultetaiService>();
+            builder.Services.AddScoped<ISuvestinesService, SuvestinesService>();
+            builder.Services.AddScoped<IUzsiemimoTipaiService, UzsiemimoTipaiService>();
+            builder.Services.AddScoped<IPDFService, PDFService>();
 
             // Register AutoMapper
             var mapperConfig = AutoMapperConfig.Initialize();
@@ -116,22 +120,17 @@ namespace BetterAIS.Server
                         ValidateAudience = true,
                         ValidIssuer = jwtSettings.Issuer,
                         ValidAudience = jwtSettings.Audience,
-                        ClockSkew = TimeSpan.Zero // Remove delay of token when expire
+                        ClockSkew = TimeSpan.Zero
                     };
                 });
 
-            // Register MemoryCache for TokenBlacklistService
             builder.Services.AddMemoryCache();
-
-            // Add Controllers
             builder.Services.AddControllers();
 
-            // Configure Swagger with JWT Authentication Support
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BetterAIS API", Version = "v1" });
 
-                // Add JWT Authentication to Swagger
                 var securityScheme = new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -170,7 +169,6 @@ namespace BetterAIS.Server
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "BetterAIS API V1");
-                    c.RoutePrefix = string.Empty; // Set Swagger UI at app's root
                 });
             }
 

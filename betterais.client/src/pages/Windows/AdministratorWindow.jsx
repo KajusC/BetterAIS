@@ -13,7 +13,7 @@ export default function AdministratorWindow() {
   return (
     <>
 
-      <MainWindow titleText="Administrator panel of Academic Info System">
+      <MainWindow titleText="Administratoriaus valdymo skydas">
         <StudentManager />
         <TeacherManager />
         <LectureManager />

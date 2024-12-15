@@ -19,8 +19,8 @@ const RecentGrades = () => {
                     setGrades(data.slice(0, 5));
                 }
             } catch (err) {
-                console.error("Klaida gaunant paşymius:", err);
-                setError("Nepavyko gauti paşymiø.");
+                console.error("Klaida gaunant paÅ¾ymius:", err);
+                setError("Nepavyko gauti paÅ¾ymiÅ³.");
             } finally {
                 setLoading(false);
             }
@@ -33,18 +33,18 @@ const RecentGrades = () => {
         <div className="dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-colors duration-300">
             <h2 className="text-xl font-semibold text-gray-700 mb-4 dark:text-white">
                 <FiClipboard className="inline-block text-gray-500 mr-2" />
-                Naujausi paşymiai
+                Naujausi paÅ¾ymiai
             </h2>
-            {loading && <p className="text-gray-600 dark:text-white">Ákeliami naujausi paşymiai...</p>}
+            {loading && <p className="text-gray-600 dark:text-white">Ä®keliami naujausi paÅ¾ymiai...</p>}
             {error && <p className="text-red-500">{error}</p>}
             {noRecentGrades && !loading && !error && (
-                <p className="text-gray-600 dark:text-white">Naujausiø paşymiø nerasta.</p>
+                <p className="text-gray-600 dark:text-white">NaujausiÅ³ paÅ¾ymiÅ³ nerasta.</p>
             )}
             {!noRecentGrades && !loading && !error && (
                 <ul className="text-gray-600 dark:text-white mb-4">
                     {grades.map((grade) => (
                         <li key={grade.idPazymys} className="mb-2">
-                            <strong>Paşymys:</strong> {grade.ivertinimas}/10
+                            <strong>PaÅ¾ymys:</strong> {grade.ivertinimas}/10
                             <br />
                             <strong>Data:</strong> {new Date(grade.data).toLocaleDateString()}
                         </li>
@@ -55,10 +55,11 @@ const RecentGrades = () => {
                 to="/showGrades"
                 className="text-blue-500 mt-4 inline-block hover:underline"
             >
-                Perşiûrëti visus paşymius
+                PerÅ¾iÅ«rÄ—ti visus paÅ¾ymius
             </Link>
         </div>
     );
 };
 
 export default RecentGrades;
+

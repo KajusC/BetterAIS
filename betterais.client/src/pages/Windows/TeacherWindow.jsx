@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import MainWindow from './MainWindow'
 import LectureManager from '../../components/TeacherComponents/LectureManager';
 import GradeManager from '../../components/TeacherComponents/GradeManager';
@@ -8,7 +8,7 @@ import TeacherCard from '../../components/TeacherComponents/TeacherCard';
 
 export default function TeacherWindow() {
     return (
-        <MainWindow titleText="Teacher's panel of Academic Info System">
+        <MainWindow titleText="Dėstytojo valdymo skydas">
           <StudentManager />
           <GradeManager />
           <LectureManager />

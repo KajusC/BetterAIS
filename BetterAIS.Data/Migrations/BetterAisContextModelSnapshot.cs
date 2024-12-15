@@ -205,9 +205,9 @@ namespace BetterAIS.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdPaskaita"));
 
-                    b.Property<DateOnly>("Data")
+                    b.Property<DateTime>("Data")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("data")
                         .HasDefaultValueSql("CURRENT_DATE");
 

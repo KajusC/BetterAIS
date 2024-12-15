@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { Link } from 'react-router-dom'
 import { FiClipboard } from 'react-icons/fi'
 
@@ -8,7 +8,7 @@ export default function LectureManager() {
           <div className="dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-colors duration-300">
             <h2 className="text-xl font-semibold text-gray-700 mb-4 dark:text-white">
               <FiClipboard className="inline-block text-gray-500 mr-2" />
-              Lecture managing
+              Paskaitų redagavimas
             </h2>
             <ul className="text-gray-600 dark:text-white">
               <li>
@@ -16,7 +16,7 @@ export default function LectureManager() {
                   to="/getLecturesInfo"
                   className="text-blue-500 mt-4 inline-block hover:underline "
                 >
-                  See lectures info
+                  Peržiūrėti paskaitų informaciją
                 </Link>
               </li>
               <li>
@@ -24,7 +24,7 @@ export default function LectureManager() {
                   to="/getFilteredLectures"
                   className="text-blue-500 mt-4 inline-block hover:underline "
                 >
-                  See filtered lectures
+                  Peržiūrėti atrinktas paskaitas
                 </Link>
               </li>
             </ul>

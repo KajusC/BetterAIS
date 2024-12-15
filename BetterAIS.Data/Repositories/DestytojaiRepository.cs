@@ -24,9 +24,21 @@ public class DestytojaiRepository : IDestytojaiRepository
 
         if (entity == null)
         {
-            throw new Exception("Entity not found");
+            throw new Exception("Destytojas nerastas");
         }
         return entity;
+    }
+    public async Task<List<string>> GetDistinctKvalifikacija()
+    {
+        return  await _context.Destytojai.Select(d => d.Kvalifikacija).Distinct().ToListAsync();
+    }
+    public async Task<IEnumerable<Destytojai>> GetFilteredByKvalifikacija(string kvalifikacija)
+    {
+        if (string.IsNullOrEmpty(kvalifikacija))
+        {
+            return await _context.Destytojai.ToListAsync();
+        }
+        return await _context.Destytojai.Where(d=>d.Kvalifikacija == kvalifikacija).ToListAsync();
     }
 
     public async Task AddAsync(Destytojai entity)
@@ -37,13 +49,24 @@ public class DestytojaiRepository : IDestytojaiRepository
 
     public async Task UpdateAsync(Destytojai entity)
     {
-        _context.Destytojai.Update(entity);
+        var existingEntity = await _context.Destytojai.FindAsync(entity.Vidko);
+        if (existingEntity == null)
+        {
+            throw new ArgumentException("Destytojas nerastas");
+        }
+        _context.Entry(existingEntity).CurrentValues.SetValues(entity);
         await _context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(string id)
     {
-        var entity = await GetByIdAsync(id);
+        var entity = await _context.Destytojai.FirstOrDefaultAsync(x => x.Vidko == id);
+
+        if (entity == null)
+        {
+            throw new KeyNotFoundException();
+        }
+
         _context.Destytojai.Remove(entity);
         await _context.SaveChangesAsync();
     }
@@ -53,4 +76,11 @@ public class DestytojaiRepository : IDestytojaiRepository
         var entity = await _context.Destytojai.OrderByDescending(x => x.Vidko).FirstOrDefaultAsync();
         return entity?.Vidko;
     }
+
+    public async Task<List<Paskaitos>> GetTeacherTimetable(string vidko)
+    {
+        return await _context.Paskaitos.Where(p => p.FkDestytojasVidko == vidko)
+        .ToListAsync();
+    }
+
 }
