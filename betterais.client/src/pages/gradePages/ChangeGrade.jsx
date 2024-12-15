@@ -2,24 +2,29 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getGradeById, updateGrade } from "../../scripts/grades";
 
-export default function KeistiPazymi() {
-    const { id } = useParams(); // Gauti pažymio ID iš maršruto parametrų
+export default function ChangeGrade() {
+    const { id } = useParams(); // Get grade ID from route parameters
     const navigate = useNavigate();
     const [gradeData, setGradeData] = useState({
         ivertinimas: "",
         data: "",
         idSuvestine: "",
     });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Gauti pažymio duomenis, kai komponentas užsikrauna
+        // Fetch grade details when the component loads
         const fetchGrade = async () => {
+            console.log("Grade ID received:", id); // Debug log
             try {
-                const data = await getGradeById(id); // Gauti pažymį pagal ID
+                const data = await getGradeById(id); // Fetch grade by ID
                 setGradeData(data);
+                console.log("Fetched grade data:", data); // Debug log
             } catch (error) {
-                console.error("Klaida gaunant pažymį:", error);
-                alert("Nepavyko gauti pažymio.");
+                console.error("Error fetching grade:", error);
+                alert("Nepavyko gauti pažymio informacijos.");
+            } finally {
+                setLoading(false);
             }
         };
         fetchGrade();
@@ -27,20 +32,27 @@ export default function KeistiPazymi() {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setGradeData({ ...gradeData, [name]: value });
+        const updatedGradeData = { ...gradeData, [name]: value };
+        setGradeData(updatedGradeData);
+        console.log("Updated grade data:", updatedGradeData); // Debug log
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Submitting grade data:", gradeData); // Debug log
         try {
-            await updateGrade(id, gradeData); // Atnaujinti pažymį su naujais duomenimis
+            await updateGrade(id, gradeData); // Update grade with new data
             alert("Pažymys sėkmingai atnaujintas!");
-            navigate("/rodyti-pazymius"); // Grįžti į pažymių sąrašą
+            navigate("/view-grades"); // Navigate back to grades list
         } catch (error) {
-            console.error("Klaida atnaujinant pažymį:", error);
+            console.error("Error updating grade:", error);
             alert("Nepavyko atnaujinti pažymio.");
         }
     };
+
+    if (loading) {
+        return <div>Kraunama pažymio informacija...</div>;
+    }
 
     return (
         <div className="container mx-auto p-6">
@@ -55,6 +67,9 @@ export default function KeistiPazymi() {
                         onChange={handleInputChange}
                         className="border rounded px-4 py-2 w-full"
                         required
+                        min="0"
+                        max="10"
+                        step="0.1"
                     />
                 </div>
                 <div>
@@ -74,14 +89,13 @@ export default function KeistiPazymi() {
                         type="number"
                         name="idSuvestine"
                         value={gradeData.idSuvestine}
-                        onChange={handleInputChange}
                         className="border rounded px-4 py-2 w-full"
                         disabled
                     />
                 </div>
                 <button
                     type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                 >
                     Atnaujinti Pažymį
                 </button>

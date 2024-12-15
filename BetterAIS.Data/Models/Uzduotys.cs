@@ -11,7 +11,7 @@ public partial class Uzduotys
 
     public string? Aprasymas { get; set; }
 
-    public DateOnly Terminas { get; set; }
+    public DateTime Terminas { get; set; } // Updated from DateOnly to DateTime
 
     public string? GriztamasisRysys { get; set; }
 
