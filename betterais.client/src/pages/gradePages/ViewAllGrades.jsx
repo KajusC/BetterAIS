@@ -13,7 +13,7 @@ export default function ViewAllGrades() {
                 const data = await getAllGrades(); // Fetch grades from API
                 setGrades(data);
             } catch (error) {
-                console.error("Nepavyko gauti paþymiø:", error);
+                console.error("Nepavyko gauti paÅ¾ymiÅ³:", error);
             } finally {
                 setLoading(false);
             }
@@ -23,22 +23,22 @@ export default function ViewAllGrades() {
     }, []);
 
     if (loading) {
-        return <div>Kraunami paþymiai...</div>;
+        return <div>Kraunami paÅ¾ymiai...</div>;
     }
 
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-2xl font-bold mb-4">Visi paþymiai</h2>
+            <h2 className="text-2xl font-bold mb-4">Visi paÅ¾ymiai</h2>
             {grades.length === 0 ? (
-                <p>Paþymiø nerasta.</p>
+                <p>PaÅ¾ymiÅ³ nerasta.</p>
             ) : (
                 <table className="table-auto w-full border-collapse border border-gray-300">
                     <thead>
                         <tr>
                             <th className="border border-gray-300 px-4 py-2">ID</th>
-                            <th className="border border-gray-300 px-4 py-2">Paþymys</th>
+                            <th className="border border-gray-300 px-4 py-2">PaÅ¾ymys</th>
                             <th className="border border-gray-300 px-4 py-2">Data</th>
-                            <th className="border border-gray-300 px-4 py-2">Suvestinës ID</th>
+                            <th className="border border-gray-300 px-4 py-2">SuvestinÄ—s ID</th>
                             <th className="border border-gray-300 px-4 py-2">Veiksmai</th>
                         </tr>
                     </thead>
