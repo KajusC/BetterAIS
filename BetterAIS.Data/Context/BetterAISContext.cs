@@ -306,7 +306,7 @@ public partial class BetterAisContext : DbContext
 
             entity.HasOne(d => d.FkProgramosKodasNavigation).WithMany(p => p.Studentais)
                 .HasForeignKey(d => d.FkProgramosKodas)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("itraukiamas");
 
             entity.HasOne(d => d.StatusasNavigation).WithMany(p => p.Studentais)
@@ -382,17 +382,17 @@ public partial class BetterAisContext : DbContext
 
             entity.HasOne(d => d.FkIdPaskaitaNavigation).WithMany(p => p.Suvestines)
                 .HasForeignKey(d => d.FkIdPaskaita)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("registruojama");
 
             entity.HasOne(d => d.FkIdUzduotisNavigation).WithMany(p => p.Suvestines)
                 .HasForeignKey(d => d.FkIdUzduotis)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("priskiriama");
 
             entity.HasOne(d => d.FkStudentasVidkoNavigation).WithMany(p => p.Suvestines)
                 .HasForeignKey(d => d.FkStudentasVidko)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("itraukiamas2");
         });
 

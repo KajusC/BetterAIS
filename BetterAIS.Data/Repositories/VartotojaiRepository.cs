@@ -50,7 +50,9 @@ public class VartotojaiRepository : IVartotojaiRepository
 
     public async Task DeleteAsync(string vidko)
     {
-        var entity = await GetByIdAsync(vidko);
+        var entity = await _context.Vartotojai
+            .Include(x => x.Destytojai)
+            .Include(x => x.Studentai).FirstOrDefaultAsync(x => x.Vidko == vidko) ?? throw new NotFoundException($"Vartotojas nerastas");
         _context.Vartotojai.Remove(entity);
         await _context.SaveChangesAsync();
     }

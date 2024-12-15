@@ -127,7 +127,7 @@ namespace BetterAIS.Business.Services
                         });
                     });
                 });
-            }).ShowInCompanionAsync();
+            }).GeneratePdf(path + $"{vidko}_ataskaita.pdf");
         }
 
 
@@ -138,7 +138,7 @@ namespace BetterAIS.Business.Services
                 {
                     row.RelativeItem().Column(stack =>
                     {
-                        stack.Item().Text("Student Information").AlignCenter().FontSize(20).Bold();
+                        stack.Item().Text("Studento Informacija").AlignCenter().FontSize(20).Bold();
                         stack.Item().Text($"Name: {studentai.Vardas} {studentai.Pavarde}").FontSize(15);
                         stack.Item().Text($"VIDKO: {studentai.Vidko}").FontSize(15);
                         stack.Item().Text($"Email: {studentai.ElPastas}").FontSize(15);
@@ -184,13 +184,13 @@ namespace BetterAIS.Business.Services
                     // Define columns
                     table.ColumnsDefinition(columns =>
                     {
-                        columns.ConstantColumn(100); // Užduotis
+                        columns.ConstantColumn(70); // Užduotis
                         columns.ConstantColumn(50);  // Dalyvavo
                         columns.ConstantColumn(70);  // Tipas
                         columns.ConstantColumn(90);  // Paskaitos Pavadinimas
                         columns.ConstantColumn(70);  // Paskaitos Data
                         columns.ConstantColumn(50);  // Privalomumas
-                        columns.ConstantColumn(100); // Dėstytojas
+                        columns.ConstantColumn(70); // Dėstytojas
                     });
 
                     // Table Header

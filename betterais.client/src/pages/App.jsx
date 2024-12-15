@@ -36,6 +36,7 @@ import DisplayAllStudents from "./studentPages/DisplayAllStudents";
 import DisplayStudentData from "./studentPages/DisplayStudentData";
 import PrintToPdf from "./studentPages/PrintToPdf";
 import StudentProfile from "./studentPages/StudentProfile";
+import EditStudent from "./studentPages/EditStudent";
 
 // teacher pages
 import AddTeacher from "./teacherPages/AddTeacher";
@@ -87,6 +88,7 @@ const App = () => {
           <Route path="/addStudent" element={<ProtectedRoute minRole="Administratorius"><AddStudent /></ProtectedRoute>} />
           <Route path="/deleteStudent" element={<ProtectedRoute minRole="Administratorius"><DeleteStudent /></ProtectedRoute>} />
           <Route path="/modifyLecture" element={<ProtectedRoute minRole="Administratorius"><ModifyLecture /></ProtectedRoute>} />
+          <Route path="/editStudent/:vidko" element={<ProtectedRoute minRole="Administratorius"><EditStudent /></ProtectedRoute>} />
 
           {/* Teacher pages */}
           <Route path="/teacher-profile/:vidko" element={<ProtectedRoute minRole="Dėstytojas"><TeacherProfile /></ProtectedRoute>} />
