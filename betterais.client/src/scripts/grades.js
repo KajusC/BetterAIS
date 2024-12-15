@@ -17,7 +17,7 @@ export const getAllGrades = async () => {
         const response = await api.get("/");
         return response.data;
     } catch (error) {
-        console.error("Error fetching grades:", error.message || error);
+        console.error("Error fetching grades:", error.response?.data || error.message);
         throw error;
     }
 };
@@ -25,14 +25,24 @@ export const getAllGrades = async () => {
 // Fetch grades by student ID
 export const getGradesByStudentId = async (studentId) => {
     try {
-        const response = await axios.get(`${API_URL}/student/${studentId}`);
+        const response = await api.get(`/student/${studentId}`);
         return response.data;
     } catch (error) {
-        console.error("Error fetching grades for student:", error);
+        console.error("Error fetching grades for student:", error.response?.data || error.message);
         throw error;
     }
 };
 
+// Fetch grades by teacher ID
+export const getGradesByTeacherId = async (teacherId) => {
+    try {
+        const response = await api.get(`/teacher/${teacherId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching grades for teacher:", error.response?.data || error.message);
+        throw error;
+    }
+};
 
 // Fetch a grade by ID
 export const getGradeById = async (id) => {
@@ -40,7 +50,7 @@ export const getGradeById = async (id) => {
         const response = await api.get(`/${id}`);
         return response.data;
     } catch (error) {
-        console.error("Error fetching grade by ID:", error.message || error);
+        console.error("Error fetching grade by ID:", error.response?.data || error.message);
         throw error;
     }
 };
@@ -51,7 +61,7 @@ export const addGrade = async (gradeData) => {
         const response = await api.post("/", gradeData);
         return response.data;
     } catch (error) {
-        console.error("Error adding grade:", error.message || error);
+        console.error("Error adding grade:", error.response?.data || error.message);
         throw error;
     }
 };
@@ -62,7 +72,7 @@ export const updateGrade = async (id, gradeData) => {
         const response = await api.put(`/${id}`, gradeData);
         return response.data;
     } catch (error) {
-        console.error("Error updating grade:", error.message || error);
+        console.error("Error updating grade:", error.response?.data || error.message);
         throw error;
     }
 };
@@ -73,7 +83,7 @@ export const deleteGrade = async (id) => {
         const response = await api.delete(`/${id}`);
         return response.data;
     } catch (error) {
-        console.error("Error deleting grade:", error.message || error);
+        console.error("Error deleting grade:", error.response?.data || error.message);
         throw error;
     }
 };

@@ -55,7 +55,11 @@ namespace BetterAIS.Business
                 cfg.CreateMap<Paskaitos, PaskaitosDTO>().ReverseMap();
                 cfg.CreateMap<PaskaitosKabinetai, PaskaitosKabinetaiDTO>().ReverseMap();
                 cfg.CreateMap<Suvestine, SuvestinesDTO>().ReverseMap();
-                cfg.CreateMap<Pazymiai, PazymiaiDTO>().ReverseMap();
+                cfg.CreateMap<Pazymiai, PazymiaiDTO>()
+                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.Data.ToDateTime(TimeOnly.MinValue))) // DateOnly to DateTime
+                .ReverseMap()
+                .ForMember(dest => dest.Data, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.Data))); // DateTime to DateOnly
+
             });
 
             return config;

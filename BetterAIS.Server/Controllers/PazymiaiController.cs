@@ -27,6 +27,17 @@ namespace BetterAIS.Server.Controllers
             return await _pazymiaiService.GetByIdAsync(id);
         }
 
+        [HttpGet("student/{studentId}")]
+        public async Task<IActionResult> GetGradesByStudentId(string studentId)
+        {
+            var grades = await _pazymiaiService.GetGradesByStudentIdAsync(studentId);
+
+            if (grades == null || !grades.Any())
+                return NotFound(); // Return 404 if no grades are found
+
+            return Ok(grades);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PazymiaiDTO pazymys)
         {

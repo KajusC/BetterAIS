@@ -21,7 +21,7 @@ export default function AddGrade() {
         try {
             await addGrade(formData); // Call the addGrade function
             alert("Pažymys pridėtas sėkmingai!");
-            navigate("/show-grades"); // Redirect to the grades list page
+            navigate("/ViewAllGrades"); // Redirect to the grades list page
         } catch (error) {
             console.error("Klaida pridedant pažymį:", error);
             alert("Nepavyko pridėti pažymio.");

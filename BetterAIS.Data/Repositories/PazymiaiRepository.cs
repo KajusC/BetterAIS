@@ -48,4 +48,13 @@ public class PazymiaiRepository : IPazymiaiRepository
         _context.Pazymiai.Remove(entity);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<IEnumerable<Pazymiai>> GetGradesByStudentId(string studentId)
+    {
+        return await _context.Pazymiai
+            .Include(p => p.FkIdSuvestineNavigation)
+            .Where(p => p.FkIdSuvestineNavigation != null &&
+                        p.FkIdSuvestineNavigation.FkStudentasVidko == studentId)
+            .ToListAsync();
+    }
 }
