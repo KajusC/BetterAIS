@@ -20,27 +20,27 @@ export default function AddGrade() {
         e.preventDefault();
         try {
             await addGrade(formData); // Call the addGrade function
-            alert("Paşymys pridëtas sëkmingai!");
+            alert("PaÅ¾ymys pridÄ—tas sÄ—kmingai!");
             navigate("/show-grades"); // Redirect to the grades list page
         } catch (error) {
-            console.error("Klaida pridedant paşymá:", error);
-            alert("Nepavyko pridëti paşymio.");
+            console.error("Klaida pridedant paÅ¾ymÄ¯:", error);
+            alert("Nepavyko pridÄ—ti paÅ¾ymio.");
         }
     };
 
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-2xl font-bold mb-4">Pridëti paşymá</h2>
+            <h2 className="text-2xl font-bold mb-4">PridÄ—ti paÅ¾ymÄ¯</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <label className="block text-sm font-medium">Ávertinimas</label>
+                    <label className="block text-sm font-medium">Ä®vertinimas</label>
                     <input
                         type="number"
                         name="ivertinimas"
                         value={formData.ivertinimas}
                         onChange={handleInputChange}
                         className="border rounded px-4 py-2 w-full"
-                        placeholder="Áveskite paşymá"
+                        placeholder="Ä®veskite paÅ¾ymÄ¯"
                         required
                     />
                 </div>
@@ -56,14 +56,14 @@ export default function AddGrade() {
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium">Suvestinës ID</label>
+                    <label className="block text-sm font-medium">SuvestinÄ—s ID</label>
                     <input
                         type="number"
                         name="idSuvestine"
                         value={formData.idSuvestine}
                         onChange={handleInputChange}
                         className="border rounded px-4 py-2 w-full"
-                        placeholder="Áveskite suvestinës ID"
+                        placeholder="Ä®veskite suvestinÄ—s ID"
                         required
                     />
                 </div>
@@ -71,7 +71,7 @@ export default function AddGrade() {
                     type="submit"
                     className="bg-blue-500 text-white px-4 py-2 rounded"
                 >
-                    Pridëti paşymá
+                    PridÄ—ti paÅ¾ymÄ¯
                 </button>
             </form>
         </div>
