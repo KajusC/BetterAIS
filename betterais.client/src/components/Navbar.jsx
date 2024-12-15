@@ -28,7 +28,7 @@ export default function Navbar() {
     if (!user) {
       // Links for unauthenticated users
       return (
-        <>
+        <div className="flex flex-col space-x-6 md:flex-row md:space-x-6">
           <Link
             to="/login"
             className="flex items-center text-gray-600 hover:text-blue-500 dark:text-white"
@@ -41,7 +41,7 @@ export default function Navbar() {
           >
             <FiLogIn className="mr-1" /> Registruotis
           </Link>
-        </>
+        </div>
       );
     }
 
@@ -109,17 +109,17 @@ export default function Navbar() {
     <>
       {/* Navbar */}
       <header
-        className={`shadow-md p-4 sticky top-0 z-50 flex justify-between items-center transition-colors duration-300 ${
+        className={`shadow-md p-4 sticky top-0 z-50 flex items-center transition-colors duration-300 ${
           isDarkMode ? "bg-gray-800" : "bg-white"
         }`}
       >
         <h1 className="text-2xl font-semibold text-gray-700 dark:text-white">
           Akademinė informacinė sistema
         </h1>
-        <nav className="flex space-x-6">{renderLinks()}</nav>
+        <div className="ml-auto flex items-center space-x-6">{renderLinks()}</div>
         <button
           onClick={toggleDarkMode}
-          className="top-4 right-4 p-2 bg-gray-200 dark:bg-gray-700 rounded-full text-gray-800 dark:text-gray-100 transition"
+          className="ml-6 p-2 bg-gray-200 dark:bg-gray-700 rounded-full text-gray-800 dark:text-gray-100 transition"
         >
           {isDarkMode ? "Šviesus rėžimas" : "Tamsus rėžimas"}
         </button>
