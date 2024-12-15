@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getGradeById, updateGrade } from "../../scripts/grades";
 
 export default function KeistiPazymi() {
-    const { id } = useParams(); // Gauti paşymio ID iğ marğruto parametrø
+    const { id } = useParams(); // Gauti paÅ¾ymio ID iÅ¡ marÅ¡ruto parametrÅ³
     const navigate = useNavigate();
     const [gradeData, setGradeData] = useState({
         ivertinimas: "",
@@ -12,14 +12,14 @@ export default function KeistiPazymi() {
     });
 
     useEffect(() => {
-        // Gauti paşymio duomenis, kai komponentas uşsikrauna
+        // Gauti paÅ¾ymio duomenis, kai komponentas uÅ¾sikrauna
         const fetchGrade = async () => {
             try {
-                const data = await getGradeById(id); // Gauti paşymá pagal ID
+                const data = await getGradeById(id); // Gauti paÅ¾ymÄ¯ pagal ID
                 setGradeData(data);
             } catch (error) {
-                console.error("Klaida gaunant paşymá:", error);
-                alert("Nepavyko gauti paşymio.");
+                console.error("Klaida gaunant paÅ¾ymÄ¯:", error);
+                alert("Nepavyko gauti paÅ¾ymio.");
             }
         };
         fetchGrade();
@@ -33,21 +33,21 @@ export default function KeistiPazymi() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await updateGrade(id, gradeData); // Atnaujinti paşymá su naujais duomenimis
-            alert("Paşymys sëkmingai atnaujintas!");
-            navigate("/rodyti-pazymius"); // Gráşti á paşymiø sàrağà
+            await updateGrade(id, gradeData); // Atnaujinti paÅ¾ymÄ¯ su naujais duomenimis
+            alert("PaÅ¾ymys sÄ—kmingai atnaujintas!");
+            navigate("/rodyti-pazymius"); // GrÄ¯Å¾ti Ä¯ paÅ¾ymiÅ³ sÄ…raÅ¡Ä…
         } catch (error) {
-            console.error("Klaida atnaujinant paşymá:", error);
-            alert("Nepavyko atnaujinti paşymio.");
+            console.error("Klaida atnaujinant paÅ¾ymÄ¯:", error);
+            alert("Nepavyko atnaujinti paÅ¾ymio.");
         }
     };
 
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-2xl font-bold mb-4">Keisti Paşymá</h2>
+            <h2 className="text-2xl font-bold mb-4">Keisti PaÅ¾ymÄ¯</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <label className="block text-sm font-medium">Ávertinimas</label>
+                    <label className="block text-sm font-medium">Ä®vertinimas</label>
                     <input
                         type="number"
                         name="ivertinimas"
@@ -69,7 +69,7 @@ export default function KeistiPazymi() {
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium">ID Suvestinë</label>
+                    <label className="block text-sm font-medium">ID SuvestinÄ—</label>
                     <input
                         type="number"
                         name="idSuvestine"
@@ -83,7 +83,7 @@ export default function KeistiPazymi() {
                     type="submit"
                     className="bg-blue-500 text-white px-4 py-2 rounded"
                 >
-                    Atnaujinti Paşymá
+                    Atnaujinti PaÅ¾ymÄ¯
                 </button>
             </form>
         </div>
