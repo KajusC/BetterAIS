@@ -6,14 +6,14 @@ export default function RodytiPazymius() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Gauti paşymius, kai komponentas ákeltas
+        // Gauti paÅ¾ymius, kai komponentas Ä¯keltas
         const fetchGrades = async () => {
             try {
-                const data = await getAllGrades(); // Gauti paşymius iğ API
+                const data = await getAllGrades(); // Gauti paÅ¾ymius iÅ¡ API
                 setGrades(data);
                 setLoading(false);
             } catch (error) {
-                console.error("Klaida gaunant paşymius:", error);
+                console.error("Klaida gaunant paÅ¾ymius:", error);
                 setLoading(false);
             }
         };
@@ -22,22 +22,22 @@ export default function RodytiPazymius() {
     }, []);
 
     if (loading) {
-        return <div>Kraunama paşymiai...</div>;
+        return <div>Kraunama paÅ¾ymiai...</div>;
     }
 
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-2xl font-bold mb-4">Paşymiai</h2>
+            <h2 className="text-2xl font-bold mb-4">PaÅ¾ymiai</h2>
             {grades.length === 0 ? (
-                <p>Nerasta paşymiø.</p>
+                <p>Nerasta paÅ¾ymiÅ³.</p>
             ) : (
                 <table className="table-auto w-full border-collapse border border-gray-300">
                     <thead>
                         <tr>
                             <th className="border border-gray-300 px-4 py-2">ID</th>
-                            <th className="border border-gray-300 px-4 py-2">Ávertinimas</th>
+                            <th className="border border-gray-300 px-4 py-2">Ä®vertinimas</th>
                             <th className="border border-gray-300 px-4 py-2">Data</th>
-                            <th className="border border-gray-300 px-4 py-2">Suvestinë ID</th>
+                            <th className="border border-gray-300 px-4 py-2">SuvestinÄ— ID</th>
                         </tr>
                     </thead>
                     <tbody>
