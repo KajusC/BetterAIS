@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { getGradesByStudentId } from "../../scripts/grades"; // Importuoja funkciją pažymiams gauti
+import React, { useState } from "react";
+import { getGradesByStudentId } from "../../scripts/grades"; // Import function for fetching grades
 
 export default function CalculateGrades() {
-    const [studentId, setStudentId] = useState(""); // Įveskite studento ID
-    const [grades, setGrades] = useState([]); // Pažymiai iš duomenų bazės
+    const [studentId, setStudentId] = useState(""); // Enter student ID
+    const [grades, setGrades] = useState([]); // Grades from the database
     const [weights, setWeights] = useState({
         assignments: 0,
         exams: 0,
@@ -12,13 +12,34 @@ export default function CalculateGrades() {
 
     const [weightedGrade, setWeightedGrade] = useState(null);
 
-    // Gauti pažymius pagal studento ID
+    // Fetch grades by student ID
     const fetchGrades = async () => {
+        if (!studentId.trim()) {
+            alert("Studento ID negali būti tuščias.");
+            return;
+        }
+
         try {
-            const data = await getGradesByStudentId(studentId); // Gauna pažymius studentui
+            const data = await getGradesByStudentId(studentId); // Fetch grades
+            console.log("Fetched grades data:", data);
+
+            if (!Array.isArray(data)) {
+                throw new Error("API response is not an array.");
+            }
+
+            // Transform the API response to match expected structure
+            const transformedGrades = data.map((grade, index) => ({
+                id: grade.idPazymys, // Map idPazymys to id
+                value: grade.ivertinimas, // Map ivertinimas to value
+                type: `Type ${index + 1}`, // Add placeholder type
+                date: grade.data, // Optional: Map date if needed
+            }));
+
+            console.log("Transformed grades:", transformedGrades);
+
             setGrades(
-                data.map((grade) =>
-                    grade.value > 10 ? { ...grade, value: 10 } : grade // Ribojame pažymius iki 10
+                transformedGrades.map((grade) =>
+                    grade.value > 10 ? { ...grade, value: 10 } : grade // Limit grades to 10
                 )
             );
         } catch (error) {
@@ -45,9 +66,10 @@ export default function CalculateGrades() {
             return;
         }
 
-        const assignmentGrade = grades.find((g) => g.type === "Assignment")?.value || 0;
-        const examGrade = grades.find((g) => g.type === "Exam")?.value || 0;
-        const participationGrade = grades.find((g) => g.type === "Participation")?.value || 0;
+        // Use placeholder type logic for demonstration
+        const assignmentGrade = grades[0]?.value || 0; // Example: First grade as assignment
+        const examGrade = grades[1]?.value || 0; // Example: Second grade as exam
+        const participationGrade = grades[2]?.value || 0; // Example: Third grade as participation
 
         const result =
             (assignmentGrade * weights.assignments) / 100 +
@@ -61,7 +83,7 @@ export default function CalculateGrades() {
         <div className="container mx-auto p-6">
             <h1 className="text-2xl font-bold mb-4">Svertinių pažymių skaičiavimas</h1>
             <div className="space-y-4">
-                {/* Įveskite studento ID */}
+                {/* Enter student ID */}
                 <div>
                     <label className="block text-sm font-medium">Įveskite studento ID</label>
                     <input
@@ -78,7 +100,7 @@ export default function CalculateGrades() {
                     </button>
                 </div>
 
-                {/* Įveskite svorius */}
+                {/* Enter weights */}
                 <div>
                     <h2 className="font-semibold text-lg">Įveskite svorio procentus</h2>
                     <div className="space-y-2">
@@ -115,7 +137,7 @@ export default function CalculateGrades() {
                     </div>
                 </div>
 
-                {/* Skaičiavimo mygtukas */}
+                {/* Calculate button */}
                 <div>
                     <button
                         onClick={calculateWeightedGrade}
@@ -125,7 +147,19 @@ export default function CalculateGrades() {
                     </button>
                 </div>
 
-                {/* Rezultato rodymas */}
+                {/* Display grades */}
+                <div className="mt-4">
+                    <h2 className="font-semibold text-lg">Pažymiai:</h2>
+                    <ul>
+                        {grades.map((grade, index) => (
+                            <li key={grade.id}>
+                                {`Type ${index + 1}:`} {grade.value}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                {/* Display result */}
                 {weightedGrade && (
                     <div className="mt-4">
                         <h2 className="font-semibold text-lg">
