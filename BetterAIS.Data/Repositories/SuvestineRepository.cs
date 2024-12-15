@@ -33,25 +33,24 @@ public class SuvestineRepository : ISuvestineRepository
 
     public async Task<Suvestine> GetByIdAsync(int id)
     {
-
         var entity = await _context.Suvestine
-            .Include(x=>x.FkIdPaskaitaNavigation)
-            .Include(x=>x.FkIdUzduotisNavigation)
+            .Include(x => x.FkIdPaskaitaNavigation)
+            .Include(x => x.FkIdUzduotisNavigation)
             .ThenInclude(s => s.TipasNavigation)
-            .Include(x => x.FkIdUzduotisNavigation)
-            .ThenInclude(s => s.Pavadinimas)
-            .Include(x => x.FkIdUzduotisNavigation)
-            .ThenInclude(s => s.Terminas)
-            .Include(x=>x.FkStudentasVidkoNavigation)
-            .Include(x=>x.Pazymiais)
+            .Include(x => x.FkStudentasVidkoNavigation)
+            .Include(x => x.Pazymiais)
             .FirstOrDefaultAsync(x => x.IdSuvestine == id);
 
         if (entity == null)
         {
-            throw new KeyNotFoundException();
+            throw new KeyNotFoundException($"Suvestine with ID {id} not found.");
         }
+
         return entity;
     }
+
+
+
 
     public async Task AddAsync(Suvestine entity)
     {

@@ -56,22 +56,16 @@ namespace BetterAIS.Business.Services
         {
             var entity = _mapper.Map<Pazymiai>(pazymiaiDto);
 
-            if (entity == null)
+            // Ensure the Suvestine exists
+            var suvestine = await _suvestineRepository.GetByIdAsync(entity.FkIdSuvestine ?? 0);
+            if (suvestine == null)
             {
-                throw new KeyNotFoundException("Pazymys not found for update.");
-            }
-
-            if (entity.FkIdSuvestine.HasValue)
-            {
-                var suvestine = await _suvestineRepository.GetByIdAsync(entity.FkIdSuvestine.Value);
-                if (suvestine == null)
-                {
-                    throw new Exception("Associated Suvestine not found.");
-                }
+                throw new Exception("Associated Suvestine not found.");
             }
 
             await _repository.UpdateAsync(entity);
         }
+
 
         public async Task DeleteAsync(int id)
         {

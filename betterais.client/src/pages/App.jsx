@@ -61,7 +61,41 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<DashboardPage />} />
 
-          {/* Admin Privileges */}
+                  {/* Admin Privileges */}
+                  <Route
+                      path="/administrator"
+                      element={
+                          <ProtectedRoute minRole="Administratorius">
+                              <AdministratorWindow />
+                          </ProtectedRoute>
+                      }
+                  />
+                  <Route
+                      path="/teacher"
+                      element={
+                          <ProtectedRoute minRole="Dėstytojas">
+                              <TeacherWindow />
+                          </ProtectedRoute>
+                      }
+                  />
+                  <Route
+                      path="/student"
+                      element={
+                          <ProtectedRoute minRole="Studentas">
+                              <StudentWindow />
+                          </ProtectedRoute>
+                      }
+                  />
+                  <Route
+                      path="/dashboard"
+                      element={
+                          <ProtectedRoute>
+                              <DashboardPage />
+                          </ProtectedRoute>
+                      }
+                  />
+
+
           <Route
             path="/administrator"
             element={
@@ -231,7 +265,16 @@ const App = () => {
                 <PrintToPdf />
               </ProtectedRoute>
             }
-          />
+                  />
+                  <Route
+                      path="/ChangeGrade/:id"
+                      element={
+                          <ProtectedRoute minRole="Dėstytojas">
+                              <ChangeGrade />
+                          </ProtectedRoute>
+                      }
+                  />
+
           <Route
             path="/viewAllGrades"
             element={
