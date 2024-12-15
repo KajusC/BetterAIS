@@ -7,24 +7,24 @@ export default function IstrintiPazymi() {
     const handleDelete = async () => {
         try {
             await deleteGrade(id);
-            alert("Paşymys sëkmingai iğtrintas!");
+            alert("PaÅ¾ymys sÄ—kmingai iÅ¡trintas!");
         } catch (error) {
             console.error(error);
-            alert("Nepavyko iğtrinti paşymio.");
+            alert("Nepavyko iÅ¡trinti paÅ¾ymio.");
         }
     };
 
     return (
         <div>
             <label>
-                Paşymio ID:
+                PaÅ¾ymio ID:
                 <input
                     type="text"
                     value={id}
                     onChange={(e) => setId(e.target.value)}
                 />
             </label>
-            <button onClick={handleDelete}>Iğtrinti Paşymá</button>
+            <button onClick={handleDelete}>IÅ¡trinti PaÅ¾ymÄ¯</button>
         </div>
     );
 }
