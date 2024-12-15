@@ -1,43 +1,54 @@
 import React, { useState, useEffect } from "react";
-import { getAllGrades } from "../../scripts/grades";
+import { getGradesByStudentId } from "../../scripts/grades";
 
-export default function RodytiPazymius() {
+export default function ShowGrades({ studentId }) {
     const [grades, setGrades] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Gauti pažymius, kai komponentas įkeltas
+        // Fetch grades for a specific student
         const fetchGrades = async () => {
             try {
-                const data = await getAllGrades(); // Gauti pažymius iš API
+                const data = await getGradesByStudentId(studentId); // Fetch grades by studentId
                 setGrades(data);
-                setLoading(false);
             } catch (error) {
-                console.error("Klaida gaunant pažymius:", error);
+                console.error("Error fetching grades:", error);
+                setError("Failed to fetch grades.");
+            } finally {
                 setLoading(false);
             }
         };
 
-        fetchGrades();
-    }, []);
+        if (studentId) {
+            fetchGrades();
+        } else {
+            setError("Student ID is required.");
+            setLoading(false);
+        }
+    }, [studentId]);
 
     if (loading) {
-        return <div>Kraunama pažymiai...</div>;
+        return <div>Loading grades...</div>;
+    }
+
+    if (error) {
+        return <div className="text-red-500">{error}</div>;
     }
 
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-2xl font-bold mb-4">Pažymiai</h2>
+            <h2 className="text-2xl font-bold mb-4">Grades for Student {studentId}</h2>
             {grades.length === 0 ? (
-                <p>Nerasta pažymių.</p>
+                <p>No grades found for this student.</p>
             ) : (
                 <table className="table-auto w-full border-collapse border border-gray-300">
                     <thead>
                         <tr>
                             <th className="border border-gray-300 px-4 py-2">ID</th>
-                            <th className="border border-gray-300 px-4 py-2">Įvertinimas</th>
-                            <th className="border border-gray-300 px-4 py-2">Data</th>
-                            <th className="border border-gray-300 px-4 py-2">Suvestinė ID</th>
+                            <th className="border border-gray-300 px-4 py-2">Grade</th>
+                            <th className="border border-gray-300 px-4 py-2">Date</th>
+                            <th className="border border-gray-300 px-4 py-2">Summary ID</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,8 +56,8 @@ export default function RodytiPazymius() {
                             <tr key={grade.idPazymys}>
                                 <td className="border border-gray-300 px-4 py-2">{grade.idPazymys}</td>
                                 <td className="border border-gray-300 px-4 py-2">{grade.ivertinimas}</td>
-                                <td className="border border-gray-300 px-4 py-2">{grade.data}</td>
-                                <td className="border border-gray-300 px-4 py-2">{grade.idSuvestine}</td>
+                                <td className="border border-gray-300 px-4 py-2">{new Date(grade.data).toLocaleDateString()}</td>
+                                <td className="border border-gray-300 px-4 py-2">{grade.fkIdSuvestine}</td>
                             </tr>
                         ))}
                     </tbody>

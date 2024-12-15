@@ -3,7 +3,6 @@ import { FiClipboard } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 export default function GradeManager() {
-  Pazymiai
     return (
         <div className="dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-colors duration-300">
             <h2 className="text-xl font-semibold text-gray-700 mb-4 dark:text-white">
@@ -45,7 +44,7 @@ export default function GradeManager() {
                 </li>
                 <li>
                     <Link
-                        to="/showGrades"
+                        to="/viewAllGrades"
                         className="text-blue-500 mt-4 inline-block hover:underline"
                     >
                         Peržiūrėti visus pažymius
@@ -54,5 +53,4 @@ export default function GradeManager() {
             </ul>
         </div>
     );
-
 }

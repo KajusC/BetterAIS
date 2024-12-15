@@ -1,4 +1,3 @@
- Pazymiai
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addGrade } from "../../scripts/grades";
@@ -22,7 +21,7 @@ export default function AddGrade() {
         try {
             await addGrade(formData); // Call the addGrade function
             alert("Pažymys pridėtas sėkmingai!");
-            navigate("/show-grades"); // Redirect to the grades list page
+            navigate("/ViewAllGrades"); // Redirect to the grades list page
         } catch (error) {
             console.error("Klaida pridedant pažymį:", error);
             alert("Nepavyko pridėti pažymio.");
