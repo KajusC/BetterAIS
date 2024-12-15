@@ -19,6 +19,8 @@ import CalculateGrades from "./gradePages/CalculateGrades";
 import ChangeGrade from "./gradePages/ChangeGrade";
 import DeleteGrade from "./gradePages/DeleteGrade";
 
+
+
 // lecture pages
 import AddLecture from "./lecturePages/AddLecture";
 import AssignLectureToTimetable from "./lecturePages/AssignLectureToTimetable";
@@ -100,7 +102,7 @@ const App = () => {
 
           {/* Student privileges */}
           <Route path="/student" element={<ProtectedRoute minRole="Studentas"><StudentWindow /></ProtectedRoute>} />
-          <Route path="/StudentProfile" element={<ProtectedRoute minRole="Studentas"><StudentProfile /></ProtectedRoute>} />
+          <Route path="/StudentProfile/:vidko" element={<ProtectedRoute minRole="Studentas"><StudentProfile /></ProtectedRoute>} />
           <Route
             path="/displayFilteredTimetables"
             element={<DisplayFilteredTimetables />}

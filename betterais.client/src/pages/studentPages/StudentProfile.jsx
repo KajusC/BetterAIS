@@ -1,47 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { getKeyByValue } from '../../scripts/getKeyByvalue'
+import { STUDENT_STATUS, STUDENT_FINANCING } from '../../constants/constants'
+import { getStudentByVidko } from '../../scripts/studentAPI'
 
 const StudentProfile = () => {
-  // Placeholder data
-  const student = {
-    id: "S001",
-    name: "Alice Johnson",
-    birthDate: "2001-04-12",
-    phoneNumber: "+123456789",
-    email: "alice.johnson@example.com",
-    studyStatus: "Active",
-    studyProgram: "Computer Science",
-    financialAidType: "Scholarship",
-    grades: [
-      { module: "Mathematics 101", grade: "A" },
-      { module: "Physics 201", grade: "B+" },
-      { module: "Chemistry 301", grade: "A-" },
-    ],
-  };
+  const { vidko } = useParams();
+
+  console.log(vidko);
+
+  const [studentInfo, setStudentInfo] = useState({});
+
+  useEffect(() => {
+    getStudentByVidko(vidko)
+      .then((data) => {
+        setStudentInfo(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, [vidko]);
+
+  const statusas = getKeyByValue(STUDENT_STATUS, studentInfo.statusas);
+  const finansavimas = getKeyByValue(STUDENT_FINANCING, studentInfo.finansavimas);
+  const gimimoData = studentInfo.gimimoData ? studentInfo.gimimoData.split('T')[0] : ''
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen dark:bg-gray-900 dark:text-white">
-      <h1 className="text-3xl font-bold mb-4">Student Profile</h1>
+      <h1 className="text-3xl font-bold mb-4">Studento Profilis (Vidko: {studentInfo.vidko})</h1>
       <div className="dark:bg-gray-800 shadow-md rounded-lg p-6 mb-6 ">
-        <h2 className="text-2xl font-semibold mb-2">Personal Information</h2>
-        <p><strong>Name:</strong> {student.name}</p>
-        <p><strong>Birth Date:</strong> {student.birthDate}</p>
-        <p><strong>Phone Number:</strong> {student.phoneNumber}</p>
-        <p><strong>Email:</strong> {student.email}</p>
-        <p><strong>Study Status:</strong> {student.studyStatus}</p>
-        <p><strong>Financial Aid:</strong> {student.financialAidType}</p>
+        <h2 className="text-2xl font-semibold mb-2">Asmeninė informacija</h2>
+        <p><strong>Vardas Pavardė:</strong> {studentInfo.vardas} {studentInfo.pavarde} </p>
+        <p><strong>Gimimo Data:</strong> {gimimoData}</p>
+        <p><strong>Telefono Nr:</strong> {studentInfo.telefonoNr}</p>
+        <p><strong>El. paštas:</strong> {studentInfo.elPastas}</p>
+        <p><strong>Studijų statusas:</strong> {statusas}</p>
+        <p><strong>Finansavimas:</strong> {finansavimas}</p>
       </div>
       
       <div className="dark:bg-gray-800 shadow-md rounded-lg p-6 mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Academic Information</h2>
-        <p><strong>Study Program:</strong> {student.studyProgram}</p>
-        <h3 className="text-xl font-semibold mt-4">Recent Grades</h3>
+        <h2 className="text-2xl font-semibold mb-2">Academinė Informacija</h2>
+        <p><strong>Studijų programa:</strong> {studentInfo.fkProgramosKodas}</p>
+        <h3 className="text-xl font-semibold mt-4">Pažymiai</h3>
         <ul>
-          {student.grades.map((grade, index) => (
-            <li key={index} className="border-b border-gray-200 py-2">
-              <p><strong>Module:</strong> {grade.module}</p>
-              <p><strong>Grade:</strong> {grade.grade}</p>
-            </li>
-          ))}
+          { /* pažymiai */}
         </ul>
       </div>
     </div>
