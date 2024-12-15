@@ -13,7 +13,7 @@ namespace BetterAIS.Server.Controllers
         private readonly IVartotojaiService _vartotojaiService;
         private readonly IPDFService _pdfService;
 
-        public StudentaiController(IStudentaiService studentaiService, 
+        public StudentaiController(IStudentaiService studentaiService,
                     IVartotojaiService vartotojaiService,
                     IPDFService pdfService)
         {
@@ -23,13 +23,19 @@ namespace BetterAIS.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<StudentaiDTO>> Get()
+        public async Task<IEnumerable<StudentaiDTO>> GetbyFilter([FromQuery] string? programosKodas)
         {
-            return await _studentaiService.GetAllAsync();
+            if (programosKodas == null)
+            {
+                return await _studentaiService.GetAllAsync();
+            }
+
+            return await _studentaiService.GetStudentaiByProgramosKodas(programosKodas);
         }
 
+
         [HttpGet("{vidko}")]
-        public async Task<StudentaiDTO> Get(string vidko)
+        public async Task<StudentaiDTO> GetByVidko(string vidko)
         {
             return await _studentaiService.GetByIdAsync(vidko);
         }
@@ -49,10 +55,17 @@ namespace BetterAIS.Server.Controllers
             return Ok();
         }
 
-        [HttpPost("{path}")]
-        public async Task<IActionResult> CreatePDF(string path, [FromQuery] string vidko)
+        [HttpPost("pdf/")]
+        public async Task<IActionResult> CreatePDF([FromQuery] string path, [FromQuery] string vidko)
         {
             await _pdfService.CreatePDF(vidko, path);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            await _studentaiService.DeleteAsync(id);
             return Ok();
         }
     }

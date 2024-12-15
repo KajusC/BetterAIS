@@ -50,10 +50,16 @@ public class StudentaiService : IStudentaiService
         await _vartotojaiService.AddStudentVartotojas(vartotojaiModel, studentaiModel);
     }
 
+    public async Task<IEnumerable<StudentaiDTO>> GetStudentaiByProgramosKodas(string programosKodas)
+    {
+        var entity = await _repository.GetAllAsync();
+        var studentTasks = entity.Where(x => x.FkProgramosKodas == programosKodas);
+
+        return _mapper.Map<IEnumerable<StudentaiDTO>>(studentTasks);
+    }
+
     public async Task UpdateAsync(StudentaiDTO studentaiModel)
     {
-        var user = await _vartotojaiService.GetByIdAsync(studentaiModel.Vidko);
-
         var vartotojaiModel = new VartotojaiDTO
         {
             Vidko = studentaiModel.Vidko,

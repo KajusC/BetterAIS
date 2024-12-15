@@ -37,6 +37,7 @@ import DisplayAllStudents from "./studentPages/DisplayAllStudents";
 import DisplayStudentData from "./studentPages/DisplayStudentData";
 import PrintToPdf from "./studentPages/PrintToPdf";
 import StudentProfile from "./studentPages/StudentProfile";
+import EditStudent from "./studentPages/EditStudent";
 
 // Teacher Pages
 import AddTeacher from "./teacherPages/AddTeacher";

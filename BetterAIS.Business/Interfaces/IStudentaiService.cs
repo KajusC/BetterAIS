@@ -8,6 +8,8 @@ public interface IStudentaiService
 
     Task<StudentaiDTO> GetByIdAsync(string vidko);
 
+    Task<IEnumerable<StudentaiDTO>> GetStudentaiByProgramosKodas(string programosKodas);
+
     Task AddAsync(StudentaiDTO studentaiModel);
 
     Task UpdateAsync(StudentaiDTO studentaiModel);
