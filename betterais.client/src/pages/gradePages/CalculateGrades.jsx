@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getGradesByStudentId } from "../../scripts/grades"; // Importuoja funkcijà paşymiams gauti
+import { getGradesByStudentId } from "../../scripts/grades"; // Importuoja funkcijÄ… paÅ¾ymiams gauti
 
 export default function CalculateGrades() {
-    const [studentId, setStudentId] = useState(""); // Áveskite studento ID
-    const [grades, setGrades] = useState([]); // Paşymiai iğ duomenø bazës
+    const [studentId, setStudentId] = useState(""); // Ä®veskite studento ID
+    const [grades, setGrades] = useState([]); // PaÅ¾ymiai iÅ¡ duomenÅ³ bazÄ—s
     const [weights, setWeights] = useState({
         assignments: 0,
         exams: 0,
@@ -12,18 +12,18 @@ export default function CalculateGrades() {
 
     const [weightedGrade, setWeightedGrade] = useState(null);
 
-    // Gauti paşymius pagal studento ID
+    // Gauti paÅ¾ymius pagal studento ID
     const fetchGrades = async () => {
         try {
-            const data = await getGradesByStudentId(studentId); // Gauna paşymius studentui
+            const data = await getGradesByStudentId(studentId); // Gauna paÅ¾ymius studentui
             setGrades(
                 data.map((grade) =>
-                    grade.value > 10 ? { ...grade, value: 10 } : grade // Ribojame paşymius iki 10
+                    grade.value > 10 ? { ...grade, value: 10 } : grade // Ribojame paÅ¾ymius iki 10
                 )
             );
         } catch (error) {
-            console.error("Klaida gaunant paşymius:", error);
-            alert("Nepavyko gauti paşymiø ğiam studentui.");
+            console.error("Klaida gaunant paÅ¾ymius:", error);
+            alert("Nepavyko gauti paÅ¾ymiÅ³ Å¡iam studentui.");
         }
     };
 
@@ -41,7 +41,7 @@ export default function CalculateGrades() {
         }
 
         if (grades.length === 0) {
-            alert("Ğiam studentui nëra jokiø paşymiø.");
+            alert("Å iam studentui nÄ—ra jokiÅ³ paÅ¾ymiÅ³.");
             return;
         }
 
@@ -59,11 +59,11 @@ export default function CalculateGrades() {
 
     return (
         <div className="container mx-auto p-6">
-            <h1 className="text-2xl font-bold mb-4">Svertiniø paşymiø skaièiavimas</h1>
+            <h1 className="text-2xl font-bold mb-4">SvertiniÅ³ paÅ¾ymiÅ³ skaiÄiavimas</h1>
             <div className="space-y-4">
-                {/* Áveskite studento ID */}
+                {/* Ä®veskite studento ID */}
                 <div>
-                    <label className="block text-sm font-medium">Áveskite studento ID</label>
+                    <label className="block text-sm font-medium">Ä®veskite studento ID</label>
                     <input
                         type="text"
                         value={studentId}
@@ -74,16 +74,16 @@ export default function CalculateGrades() {
                         onClick={fetchGrades}
                         className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
                     >
-                        Gauti paşymius
+                        Gauti paÅ¾ymius
                     </button>
                 </div>
 
-                {/* Áveskite svorius */}
+                {/* Ä®veskite svorius */}
                 <div>
-                    <h2 className="font-semibold text-lg">Áveskite svorio procentus</h2>
+                    <h2 className="font-semibold text-lg">Ä®veskite svorio procentus</h2>
                     <div className="space-y-2">
                         <div>
-                            <label className="block text-sm">Namø darbai (%)</label>
+                            <label className="block text-sm">NamÅ³ darbai (%)</label>
                             <input
                                 type="number"
                                 name="assignments"
@@ -115,13 +115,13 @@ export default function CalculateGrades() {
                     </div>
                 </div>
 
-                {/* Skaièiavimo mygtukas */}
+                {/* SkaiÄiavimo mygtukas */}
                 <div>
                     <button
                         onClick={calculateWeightedGrade}
                         className="bg-green-500 text-white px-4 py-2 rounded"
                     >
-                        Skaièiuoti
+                        SkaiÄiuoti
                     </button>
                 </div>
 
@@ -129,7 +129,7 @@ export default function CalculateGrades() {
                 {weightedGrade && (
                     <div className="mt-4">
                         <h2 className="font-semibold text-lg">
-                            Svertinis paşymys: {weightedGrade}
+                            Svertinis paÅ¾ymys: {weightedGrade}
                         </h2>
                     </div>
                 )}
