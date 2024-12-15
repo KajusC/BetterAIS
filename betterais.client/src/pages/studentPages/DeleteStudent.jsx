@@ -14,6 +14,10 @@ export default function DeleteStudent() {
 
   const handleDeleteStudent = (vidko) => {
     console.log(vidko)
+
+    // confomation dialog
+    alert("Ar tikrai norite ištrinti studentą?")
+
     deleteStudentAPI(vidko).then(() => {
       getAllStudents().then((response) => {
         setStudents(response)
