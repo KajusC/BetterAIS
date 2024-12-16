@@ -37,7 +37,8 @@ export default function StudentWindow() {
     return (
         <MainWindow titleText="Studento valdymo skydas">
         <ProfileOverview studentInfo={studentData} />
-        <RecentGrades studentId={studentData.vidko} />
+            <RecentGrades studentId={studentData.vidko} />
+            <UpcomingLectures studentId={studentData.vidko} />
       </MainWindow>
       );
 }

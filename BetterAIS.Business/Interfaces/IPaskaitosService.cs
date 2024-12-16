@@ -11,5 +11,5 @@ public interface IPaskaitosService
     Task DeleteAsync(int id);
 
     // New Method for Upcoming Lectures
-    Task<IEnumerable<PaskaitosDTO>> GetUpcomingLecturesAsync();
+    //Task<IEnumerable<PaskaitosDTO>> GetUpcomingLecturesAsync();
 }

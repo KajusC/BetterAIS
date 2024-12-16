@@ -45,7 +45,7 @@ public class PaskaitosService : IPaskaitosService
     {
         await _repository.DeleteAsync(id);
     }
-    public async Task<IEnumerable<PaskaitosDTO>> GetUpcomingLecturesAsync()
+    /*public async Task<IEnumerable<PaskaitosDTO>> GetUpcomingLecturesAsync()
     {
         var currentTime = DateTime.Now;
 
@@ -58,5 +58,5 @@ public class PaskaitosService : IPaskaitosService
             IdPaskaita = p.Id,
             Trukme = p.Laikas.ToString(@"hh\:mm")
         });
-    }
+    }*/
 }

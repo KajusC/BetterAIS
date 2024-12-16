@@ -52,7 +52,7 @@ public class PaskaitosController : ControllerBase
         await _paskaitosService.DeleteAsync(id);
         return Ok();
     }
-    [HttpGet("Upcoming")]
+    /*[HttpGet("Upcoming")]
     public async Task<IActionResult> GetUpcomingLectures()
     {
         try
@@ -64,5 +64,5 @@ public class PaskaitosController : ControllerBase
         {
             return StatusCode(500, $"Klaida: {ex.Message}");
         }
-    }
+    }*/
 }
