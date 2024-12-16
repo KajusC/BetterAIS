@@ -15,3 +15,12 @@ export const STUDY_LEVEL = {
     "Magistras": 2,
     "Daktaras": 3
 }
+export const LECTURE_TYPES = {
+    Teorija: 1,
+    Laboratorinis: 2,
+    Konsultacija: 3,
+    Atsiskaitymas: 4,
+    Gynimas: 5,
+    TarpinisEgzaminas: 6,
+    Seminaras: 7
+};

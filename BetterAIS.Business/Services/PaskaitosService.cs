@@ -45,4 +45,18 @@ public class PaskaitosService : IPaskaitosService
     {
         await _repository.DeleteAsync(id);
     }
+    public async Task<IEnumerable<PaskaitosDTO>> GetUpcomingLecturesAsync()
+    {
+        var currentTime = DateTime.Now;
+
+        // Fetch upcoming lectures via repository
+        var upcomingLectures = await _repository.GetUpcomingLecturesAsync(currentTime);
+
+        // Map the result to DTOs using AutoMapper
+        return upcomingLectures.Select(p => new PaskaitosDTO
+        {
+            IdPaskaita = p.Id,
+            Trukme = p.Laikas.ToString(@"hh\:mm")
+        });
+    }
 }

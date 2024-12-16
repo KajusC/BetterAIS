@@ -10,7 +10,15 @@ export default function LectureManager() {
               <FiClipboard className="inline-block text-gray-500 mr-2" />
               Paskaitų redagavimas
             </h2>
-            <ul className="text-gray-600 dark:text-white">
+                <ul className="text-gray-600 dark:text-white">
+                    <li>
+                        <Link
+                            to="/addModule"
+                            className="text-purple-500 mt-4 inline-block hover:underline "
+                        >
+                            Sukurti modulį
+                        </Link>
+                    </li>
               <li>
                 <Link
                   to="/addLecture"

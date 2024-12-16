@@ -23,9 +23,12 @@ import DeleteGrade from "./gradePages/DeleteGrade";
 import ViewAllGrades from "./gradePages/ViewAllGrades";
 
 // Lecture Pages
+import AddModule from "./lecturePages/AddModule";
 import AddLecture from "./lecturePages/AddLecture";
 import AssignLectureToTimetable from "./lecturePages/AssignLectureToTimetable";
+import EditLecture from "./lecturePages/EditLecture";
 import DeleteLecture from "./lecturePages/DeleteLecture";
+import GetLecturesInfo from "./lecturePages/GetLecturesInfo";
 import DisplayFilteredTimetables from "./lecturePages/DisplayFilteredTimetables";
 import ModifyLecture from "./lecturePages/ModifyLecture";
 import TimetablePage from "./lecturePages/TimetablePage";
@@ -104,7 +107,15 @@ const App = () => {
                 <AdministratorWindow />
               </ProtectedRoute>
             }
-          />
+                  />
+                  <Route
+                      path="/addModule"
+                      element={
+                          <ProtectedRoute minRole="Administratorius">
+                              <AddModule />
+                          </ProtectedRoute>
+                      }
+                  />
           <Route
             path="/addLecture"
             element={
@@ -128,7 +139,23 @@ const App = () => {
                 <DeleteLecture />
               </ProtectedRoute>
             }
-          />
+                  />
+                  <Route
+                      path="/editLecture"
+                      element={
+                          <ProtectedRoute minRole="Administratorius">
+                              <EditLecture />
+                          </ProtectedRoute>
+                      }
+                  />
+                  <Route
+                      path="/getLecturesInfo"
+                      element={
+                          <ProtectedRoute minRole="Administratorius">
+                              <GetLecturesInfo />
+                          </ProtectedRoute>
+                      }
+                  />
           <Route
             path="/add-teacher"
             element={
@@ -176,7 +203,15 @@ const App = () => {
                 <AddStudent />
               </ProtectedRoute>
             }
-          />
+                  />
+                  <Route
+                      path="/editStudent"
+                      element={
+                          <ProtectedRoute minRole="Administratorius">
+                              <EditStudent />
+                          </ProtectedRoute>
+                      }
+                  />
           <Route
             path="/deleteStudent"
             element={

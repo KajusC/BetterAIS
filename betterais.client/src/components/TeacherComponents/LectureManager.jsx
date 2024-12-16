@@ -8,7 +8,7 @@ export default function LectureManager() {
           <div className="dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-colors duration-300">
             <h2 className="text-xl font-semibold text-gray-700 mb-4 dark:text-white">
               <FiClipboard className="inline-block text-gray-500 mr-2" />
-              Paskaitų redagavimas
+              Paskaitų peržiūra
             </h2>
             <ul className="text-gray-600 dark:text-white">
               <li>
@@ -19,14 +19,7 @@ export default function LectureManager() {
                   Peržiūrėti paskaitų informaciją
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/getFilteredLectures"
-                  className="text-blue-500 mt-4 inline-block hover:underline "
-                >
-                  Peržiūrėti atrinktas paskaitas
-                </Link>
-              </li>
+              
             </ul>
           </div>
         </>

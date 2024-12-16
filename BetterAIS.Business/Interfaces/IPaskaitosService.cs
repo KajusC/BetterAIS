@@ -9,4 +9,7 @@ public interface IPaskaitosService
     Task AddAsync(PaskaitosDTO paskaita);
     Task UpdateAsync(PaskaitosDTO paskaita);
     Task DeleteAsync(int id);
+
+    // New Method for Upcoming Lectures
+    Task<IEnumerable<PaskaitosDTO>> GetUpcomingLecturesAsync();
 }

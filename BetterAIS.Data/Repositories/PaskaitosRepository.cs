@@ -63,4 +63,14 @@ public class PaskaitosRepository : IPaskaitosRepository
         _context.Paskaitos.Remove(entity);
         await _context.SaveChangesAsync();
     }
+    public async Task<IEnumerable<Paskaitos>> GetUpcomingLecturesAsync(DateTime currentTime)
+    {
+        return await _context.Paskaitos
+            .Where(p => p.Data >= currentTime.Date) // Fetch only upcoming lectures
+            .Include(p => p.PaskaitosKabinetais)
+            .Include(p => p.FkModulisKodas)
+            .OrderBy(p => p.Data)
+            .ThenBy(p => p.Trukmė)
+            .ToListAsync();
+    }
 }

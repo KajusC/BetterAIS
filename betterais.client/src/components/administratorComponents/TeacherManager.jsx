@@ -10,7 +10,15 @@ export default function TeacherManager() {
               <FiClipboard className="inline-block text-gray-500 mr-2" />
               Dėstytojų redagavimas
             </h2>
-            <ul className="text-gray-600 dark:text-white">
+                <ul className="text-gray-600 dark:text-white">
+                    <li>
+                        <Link
+                            to="/assignTeacher"
+                            className="text-purple-500 mt-4 inline-block hover:underline "
+                        >
+                            Priskirti dėstytoją prie modulio
+                        </Link>
+                    </li>
               <li>
                 <Link
                   to="/add-teacher"
@@ -43,6 +51,7 @@ export default function TeacherManager() {
                   display teacher data
                 </Link>
               </li> */}
+                    
               <li>
                 <Link
                   to="/showAllTeachers"
