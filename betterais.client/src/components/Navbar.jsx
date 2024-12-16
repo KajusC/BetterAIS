@@ -35,12 +35,6 @@ export default function Navbar() {
           >
             <FiLogIn className="mr-1" /> Prisijungti
           </Link>
-          <Link
-            to="/register"
-            className="flex items-center text-gray-600 hover:text-blue-500 dark:text-white"
-          >
-            <FiLogIn className="mr-1" /> Registruotis
-          </Link>
         </div>
       );
     }

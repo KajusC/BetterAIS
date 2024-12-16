@@ -4,10 +4,13 @@ import { FiClipboard } from "react-icons/fi";
 import { getGradesByStudentId } from "../../scripts/grades"; // Function to fetch grades by student ID
 
 const RecentGrades = ({ studentId }) => {
+    console.log("Studento ID:", studentId);
     const [grades, setGrades] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [noRecentGrades, setNoRecentGrades] = useState(false);
+
+    let pathToGrades = `/showGrades/${studentId}`;
 
     useEffect(() => {
         const fetchGrades = async () => {
@@ -73,7 +76,7 @@ const RecentGrades = ({ studentId }) => {
                 </ul>
             )}
             <Link
-                to="/showGrades"
+                to={pathToGrades}
                 className="text-blue-500 mt-4 inline-block hover:underline"
             >
                 Peržiūrėti visus pažymius

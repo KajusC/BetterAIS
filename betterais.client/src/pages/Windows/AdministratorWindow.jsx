@@ -17,7 +17,6 @@ export default function AdministratorWindow() {
         <StudentManager />
         <TeacherManager />
         <LectureManager />
-        <AdministratorCard admin={admin} />
       </MainWindow>
 
     </>

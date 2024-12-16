@@ -13,13 +13,14 @@ export default function DeleteStudent() {
   }, [])
 
   const handleDeleteStudent = (vidko) => {
-    console.log(vidko)
-    deleteStudentAPI(vidko).then(() => {
-      getAllStudents().then((response) => {
-        setStudents(response)
-      })
-    })
-  }
+    if (confirm("Ar tikrai norite ištrinti studentą?")) {
+        deleteStudentAPI(vidko).then(() => {
+            getAllStudents().then((response) => {
+                setStudents(response)
+            })
+        })
+    }
+}
 
   return (
     <div>
@@ -45,7 +46,7 @@ export default function DeleteStudent() {
               <td className="border px-4 py-2">{getKeyByValue(STUDENT_STATUS, student.statusas)}</td>
               <td className="border px-4 py-2">{getKeyByValue(STUDENT_FINANCING, student.finansavimas)}</td>
               <td className="border px-4 py-2">
-                <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => handleDeleteStudent(student.vidko)}>Delete</button>
+                <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => handleDeleteStudent(student.vidko)}>Trinti</button>
               </td>
             </tr>
           ))}

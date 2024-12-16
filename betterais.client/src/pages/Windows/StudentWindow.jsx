@@ -7,6 +7,7 @@ import PendingTasks from '../../components/studentComponents/PendingTasks'
 import ModuleSummary from '../../components/studentComponents/ModuleSummary'
 import {jwtDecode} from 'jwt-decode';
 import { getStudentByVidko } from '../../scripts/studentAPI'
+import ShowGrades from '../gradePages/ShowGrades'
 
 export default function StudentWindow() {
 
@@ -28,7 +29,6 @@ export default function StudentWindow() {
             });
     }, []);
 
-    console.log(studentData);
 
     if (!studentData) {
         return <MainWindow titleText="Studento valdymo skydas">Loading...</MainWindow>;
@@ -37,10 +37,7 @@ export default function StudentWindow() {
     return (
         <MainWindow titleText="Studento valdymo skydas">
         <ProfileOverview studentInfo={studentData} />
-        <RecentGrades grades={studentData?.grades} />
-        <UpcomingLectures lectures={studentData?.lectures} />
-        <PendingTasks tasks={studentData?.tasks} />
-        <ModuleSummary modules={studentData?.modules} />
+        <RecentGrades studentId={studentData.vidko} />
       </MainWindow>
       );
 }

@@ -4,6 +4,8 @@ import { getKeyByValue } from '../../scripts/getKeyByvalue'
 import { STUDENT_STATUS, STUDENT_FINANCING } from '../../constants/constants'
 import { getStudentByVidko, downloadPDF } from '../../scripts/studentAPI'
 import ToastNotification from '../../components/ToastNotification'
+import ShowGrades from '../gradePages/ShowGrades'
+import RecentGrades from '../../components/studentComponents/RecentGrades'
 
 const StudentProfile = () => {
   const { vidko } = useParams()
@@ -82,7 +84,7 @@ const StudentProfile = () => {
         </p>
         <h3 className="text-xl font-semibold mt-4">Pažymiai</h3>
         <ul>
-          {/* pažymiai */}
+          <RecentGrades studentId={vidko} />
         </ul>
       </div>
 

@@ -13,26 +13,10 @@ export default function StudentManager() {
         <ul className="text-gray-600 dark:text-white">
           <li>
             <Link
-              to="/printStudentPDF"
+              to="/displayStudentData"
               className="text-blue-500 mt-4 inline-block hover:underline "
             >
-              Spausdinti studentą PDF
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/getStudentData"
-              className="text-blue-500 mt-4 inline-block hover:underline "
-            >
-              Rasti studentą
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/getFilteredStudentData"
-              className="text-blue-500 mt-4 inline-block hover:underline "
-            >
-              Rasti visus studentus
+              Atsidaryti studentų sąrašą
             </Link>
           </li>
         </ul>
